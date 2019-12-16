@@ -9,14 +9,15 @@ export default class extends React.Component{
     }
 
     increase(){
-        this.state.cnt++;
+        console.log(this.state);
+        //this.state.cnt++; //Do not work
     }
      render(){
          return (
              <div>
                  <strong>{this.state.cnt}</strong>
                  <br/>
-                 <button onClick={this.increase.bind(this)}>+1</button>
+            <button onClick={()=> this.increase()}>+1</button>
              </div>
          );
      }
