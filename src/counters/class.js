@@ -9,7 +9,7 @@ export default class extends React.Component{
     }
 
     increase(){
-        console.log(this);
+        this.state.cnt++;
     }
      render(){
          return (
