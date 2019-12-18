@@ -2,16 +2,13 @@ import React from 'react';
 
 export default class extends React.Component{
  
-
-
-
     state = {
         cnt: 1
     }
 
     increase = () => {
-        console.log(this.state);
-        //this.state.cnt++; //Do not work
+        this.state.cnt++; //State is immutable
+        console.log(this.state.cnt);
     }
      render(){
          return (
