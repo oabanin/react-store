@@ -7,6 +7,9 @@ export default class extends React.Component{
     }
 
     increase = () => {
+        this.setState({
+            cnt: 4
+        })
         this.state.cnt++; //State is immutable
         console.log(this.state.cnt);
     }
