@@ -8,9 +8,8 @@ export default class extends React.Component{
 
     increase = () => {
         this.setState({
-            cnt: 4
+            cnt: this.state.cnt++
         })
-        this.state.cnt++; //State is immutable
         console.log(this.state.cnt);
     }
      render(){
