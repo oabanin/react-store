@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class CounterClass extends React.Component {
 
@@ -37,8 +36,6 @@ class CounterClass extends React.Component {
     }
 }
 
-CounterClass.propTypes = {
-    min: PropTypes.Number
-}
+
 
 export default CounterClass;

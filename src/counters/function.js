@@ -1,22 +1,35 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-export default function () {
-
-    let [cnt,setCnt] = useState(0);
-    let [randCnt,randSetCnt] = useState(3);
-
+export default function (props) {
+    let [current, setCurrent] = useState(props.min);
     let increase = () => {
-        setCnt(cnt+1);
-        randSetCnt(Math.random());
+        if (current < props.max) setCurrent(current + 1);
+    }
+    let decrease = () => {
+        if (current > props.min) setCurrent(current - 1);
+    }
+
+
+    let handleChange = (event) => {
+        let value = +event.target.value;
+        if (value > 0 && value < 11) {
+            setCurrent(value);
+        }
+
+
     }
 
     return (
+
         <div>
-               <strong>{cnt}</strong>
-            <br />
-            Random state: {randCnt}<br/>
-            <button onClick={increase}>+1</button>
+            <p>Works from {props.min} to {props.max}</p>
+            <button onClick={decrease}>Remove One</button>
+            <input type="text" value={current} onChange={handleChange} />
+            <button onClick={increase}>Add One</button>
         </div>
+
+
+
     );
 
 
