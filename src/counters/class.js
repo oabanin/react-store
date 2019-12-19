@@ -15,11 +15,11 @@ export default class extends React.Component {
 
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         let value = +event.target.value;
         console.dir(value);
         if ( value> 0 && value < 11) {
-            console.log(this.state); //this.state do not work
+            console.log(this.state); // this.state work with arrow functions or bind
         }
 
 
