@@ -17,9 +17,8 @@ export default class extends React.Component {
 
     handleChange = (event) => {
         let value = +event.target.value;
-        console.dir(value);
-        if ( value> 0 && value < 11) {
-            console.log(this.state); // this.state work with arrow functions or bind
+        if (value > 0 && value < 11) {
+            this.setState({current: value});
         }
 
 
@@ -28,6 +27,7 @@ export default class extends React.Component {
     render() {
         return (
             <div>
+                <p>Works from {this.props.min} to {this.props.max}</p>
                 <button onClick={this.decrease}>Remove One</button>
                 <input type="text" value={this.state.current} onChange={this.handleChange} />
                 <button onClick={this.increase}>Add One</button>
