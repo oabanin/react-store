@@ -15,7 +15,7 @@ export default function () {
                <strong>{cnt}</strong>
             <br />
             Random state: {randCnt}<br/>
-            <button onClick={()=>setCnt(cnt+1)}>+1</button>
+            <button onClick={increase}>+1</button>
         </div>
     );
 
