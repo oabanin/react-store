@@ -1,25 +1,37 @@
 import React from 'react';
 
-export default class extends React.Component{
- 
+export default class extends React.Component {
+
     state = {
-        cnt: 1
+        current: this.props.min
     }
 
     increase = () => {
-        this.setState({
-            cnt: this.state.cnt+1
-        })
-        console.log(this.state.cnt);
+        if (this.state.current < this.props.max) this.setState({ current: this.state.current + 1 });
     }
-     render(){
-         return (
-             <div>
-                 <strong>{this.state.cnt}</strong>
-                 <br/>
-            <button onClick={this.increase}>+1</button>
 
-             </div>
-         );
-     }
+    decrease = () => {
+        if (this.state.current > this.props.min) this.setState({ current: this.state.current - 1 });
+
+    }
+
+    handleChange(event) {
+        let value = +event.target.value;
+        console.dir(value);
+        if ( value> 0 && value < 11) {
+            console.log(this.state); //this.state do not work
+        }
+
+
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.decrease}>Remove One</button>
+                <input type="text" value={this.state.current} onChange={this.handleChange} />
+                <button onClick={this.increase}>Add One</button>
+            </div>
+        );
+    }
 }
