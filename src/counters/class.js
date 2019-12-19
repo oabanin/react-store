@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default class extends React.Component {
+
+class CounterClass extends React.Component {
 
     state = {
         current: this.props.min
@@ -35,3 +36,5 @@ export default class extends React.Component {
         );
     }
 }
+
+export default CounterClass;
