@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 export default function () {
 
     let [cnt,setCnt] = useState(0);
-    let [randCnt,randSetCnt] = useState(10);
+    let [randCnt,randSetCnt] = useState(3);
 
     let increase = () => {
         setCnt(cnt+1);
@@ -12,10 +12,10 @@ export default function () {
 
     return (
         <div>
-            <strong>{cnt}</strong>
+               <strong>{cnt}</strong>
             <br />
             Random state: {randCnt}<br/>
-            <button onClick={increase}>+1</button>
+            <button onClick={()=>setCnt(cnt+1)}>+1</button>
         </div>
     );
 
