@@ -8,7 +8,7 @@ export default class extends React.Component{
 
     increase = () => {
         this.setState({
-            cnt: this.state.cnt++
+            cnt: this.state.cnt+1
         })
         console.log(this.state.cnt);
     }
