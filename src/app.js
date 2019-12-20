@@ -7,7 +7,7 @@ export default function(){
     return(
     <div>
         <h2>MinMax Simple</h2>
-        <HW1/>
+        <HW1 min={1} max={10}/>
 
     </div>
 
