@@ -9,20 +9,12 @@ export default class extends React.Component {
     increase = () => {
         this.setState({
             cnt: this.state.cnt + 1
+        },()=>{
+            this.setState({
+                cnt: this.state.cnt + 1
+            })
         })
 
-        this.setState({
-            cnt: this.state.cnt + 1
-        })
-
-
-        this.setState({
-            cnt: this.state.cnt + 1
-        })
-
-        this.setState({
-            cnt: this.state.cnt + 1
-        })
     }
 
     decrease = () => {
