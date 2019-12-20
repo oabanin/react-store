@@ -30,13 +30,13 @@ export default class Some extends React.Component {
         );
     }
 }
-
+/*
 Some.defaultProps = {
     min: 1,
     max: 5
 }
-
+*/
 Some.propTypes = {
-    min: PropTypes.number,
-    max: PropTypes.number
+    min: PropTypes.number.isRequired,
+    max: PropTypes.number.isRequired
 }
