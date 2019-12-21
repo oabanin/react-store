@@ -20,16 +20,22 @@ export default class extends React.Component {
         this.set(this.state.cnt - 1);
     }
 
-    set(newCnt){
-       let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
-       this.setState({cnt});
+    set(newCnt) {
+        let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
+        this.setState({ cnt });
     }
+
+    setValue(newStr){
+        let cnt = parseInt(newStr);
+        if(isNaN(cnt))
+    }
+
 
     render() {
         return (
             <div>
                 <button onClick={this.decrease}>-</button>
-                <strong>{this.state.cnt}</strong>
+                <input value={this.state.cnt} onChange={(e) => this.setValue(e.target.value)} />
                 <button onClick={this.increase}>+</button>
             </div>
         );
