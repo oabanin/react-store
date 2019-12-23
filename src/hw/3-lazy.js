@@ -31,6 +31,10 @@ export default class extends React.Component {
 
     }
 
+    appyValue = () => {
+        let cnt = parseInt(this.state.inputValue);
+        this.set(isNaN(cnt) ? this.state.min : cnt);
+    }
 
     render() {
         return (
@@ -39,7 +43,8 @@ export default class extends React.Component {
             {this.state.inputValue} - state.inputValue<br/>
                 <button onClick={this.decrease}>-</button>
                 <input value={this.state.inputValue}
-                       onChange={(e) => this.setValue(e.target.value)} />
+                       onChange={(e) => this.setValue(e.target.value)}
+                       onBlur={this.appyValue} />
                 <button onClick={this.increase}>+</button>
             </div>
         );
