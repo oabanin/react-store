@@ -27,7 +27,8 @@ export default class extends React.Component {
 
     setValue(newStr){
         let cnt = parseInt(newStr);
-        if(isNaN(cnt))
+        this.set(isNaN(cnt)? this.props.min : cnt);
+
     }
 
 
