@@ -23,7 +23,7 @@ export default class extends React.Component {
 
     set(newCnt) {
         let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
-        this.setState({ cnt });
+        this.setState({ cnt, inputValue: cnt });
     }
 
     setValue(newStr){
@@ -35,8 +35,10 @@ export default class extends React.Component {
     render() {
         return (
             <div>
+            {this.state.cnt} - state.cnt <br/>
+            {this.state.inputValue} - state.inputValue<br/>
                 <button onClick={this.decrease}>-</button>
-                <input value={this.state.cnt}
+                <input value={this.state.inputValue}
                        onChange={(e) => this.setValue(e.target.value)} />
                 <button onClick={this.increase}>+</button>
             </div>
