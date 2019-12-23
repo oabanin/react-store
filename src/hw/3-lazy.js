@@ -31,9 +31,16 @@ export default class extends React.Component {
 
     }
 
+
     appyValue = () => {
         let cnt = parseInt(this.state.inputValue);
         this.set(isNaN(cnt) ? this.state.min : cnt);
+    }
+
+    checkEnterKey = (e) => {
+        if(e.keyCode === 13){
+            this.appyValue();
+        }
     }
 
     render() {
@@ -44,7 +51,8 @@ export default class extends React.Component {
                 <button onClick={this.decrease}>-</button>
                 <input value={this.state.inputValue}
                        onChange={(e) => this.setValue(e.target.value)}
-                       onBlur={this.appyValue} />
+                       onBlur={this.appyValue}
+                       onKeyUp={this.checkEnterKey} />
                 <button onClick={this.increase}>+</button>
             </div>
         );
