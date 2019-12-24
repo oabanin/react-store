@@ -46,6 +46,7 @@ export default class extends React.Component {
     render() {
         return (
             <div>
+                {this.props.min} - props.min <br/>
             {this.state.cnt} - state.cnt <br/>
             {this.state.inputValue} - state.inputValue<br/>
                 <button onClick={this.decrease}>-</button>
