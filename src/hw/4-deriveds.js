@@ -8,6 +8,12 @@ export default class extends React.Component {
         max: PropTypes.number.isRequired
     }
 
+    static getDerivedStateFromProps(props, state){
+        state.cnt = Math.max(props.min, Math.min(state.cnt, props.max));
+        state.inputValue = state.cnt;
+        return state;
+    }
+
     state = {
         cnt: this.props.min,
         inputValue : this.props.min
