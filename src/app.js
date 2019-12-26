@@ -20,15 +20,26 @@ export default class extends React.Component {
                 current: 1
             }
 
-        ]
+        ],
+        total : 0
     }
 
+
     changeCnt(i,cnt){
-        console.log(i,cnt);
+
+        //this.state.products[i].current = cnt; does not work because of immutability
+
+        let newProducts = [...this.state.products];
+        let newProduct = {...newProducts[i]};
+        newProduct.current=cnt;
+        newProducts[i] = newProduct;
+        this.setState({products: newProducts});
+
     }
 
     render() {
         let productRows = this.state.products.map((product, i) => {
+            // {this.setState({total: this.state.total + product.price * product.current});}
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
@@ -40,9 +51,12 @@ export default class extends React.Component {
                         onChange={(cnt)=> this.changeCnt(i,cnt)}/>
                     </td>
                     <td>{product.price * product.current}</td>
+                   
                 </tr>
             )
-        })
+        });
+
+        console.log(productRows);
         return (
             <div>
                 <h3>Cart</h3>
@@ -56,6 +70,7 @@ export default class extends React.Component {
                         </tr>
 
                         {productRows}
+                        
                     </tbody>
                 </table>
 
