@@ -1,26 +1,66 @@
-import React, {useState} from 'react';
-import HW1 from './hw/1-simple';
-import HW2 from './hw/2-input';
-import HW3 from './hw/3-lazy';
-import Derived from './hw/4-deriveds';
+import React from 'react';
+import AppMinMax from './hw/5-norm';
 
-export default function(){
-    let [someMin, setSomeMin] = useState(20);
 
-    setTimeout(()=> {
-        setSomeMin(40);
-    }, 2000)
-    return(
-    <div>
-        <h2>MinMax Simple</h2>
-        <HW1 min={1} max={10}/>
-        <h2>MinMax input</h2>
-        <HW2 min={-11} max={10}/>
-        <h2>LAZY input</h2>
-        <HW3 min={20} max={100}/>
-        <h2>Derived Input</h2>
-        <Derived min={someMin} max={100} key={someMin + 50} />
-    </div>
+export default class extends React.Component {
+    state = {
+        products: [
+            {
+                id: 100,
+                title: "Iphone 200",
+                price: 12222,
+                rest: 10,
+                current: 1
+            },
+            {
+                id: 101,
+                title: "Samsung AAZ8",
+                price: 22222,
+                rest: 10,
+                current: 1
+            }
 
-    );
+        ]
+    }
+
+    changeCnt(i,cnt){
+        console.log(i,cnt);
+    }
+
+    render() {
+        let productRows = this.state.products.map((product, i) => {
+            return (
+                <tr key={product.id}>
+                    <td>{product.title}</td>
+                    <td>{product.price}</td>
+                    <td><AppMinMax
+                        min={1}
+                        max={product.rest}
+                        cnt={product.current}
+                        onChange={(cnt)=> this.changeCnt(i,cnt)}/>
+                    </td>
+                    <td>{product.price * product.current}</td>
+                </tr>
+            )
+        })
+        return (
+            <div>
+                <h3>Cart</h3>
+                <table border="1">
+                    <tbody>
+                        <tr>
+                            <td>Title</td>
+                            <td>Price</td>
+                            <td>Count</td>
+                            <td>Total</td>
+                        </tr>
+
+                        {productRows}
+                    </tbody>
+                </table>
+
+            </div>
+        );
+
+    }
 }
