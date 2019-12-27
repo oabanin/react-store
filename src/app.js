@@ -1,26 +1,10 @@
 import React from 'react';
 import AppMinMax from './hw/5-norm';
-
+//import DeleteButton from'./6-deleteButton'
 
 export default class extends React.Component {
     state = {
-        products: [
-            {
-                id: 100,
-                title: "Iphone 200",
-                price: 12222,
-                rest: 10,
-                current: 1
-            },
-            {
-                id: 101,
-                title: "Samsung AAZ8",
-                price: 22222,
-                rest: 10,
-                current: 1
-            }
-
-        ]
+        products: getProducts()
     }
 
 
@@ -28,18 +12,16 @@ export default class extends React.Component {
 
         //this.state.products[i].current = cnt; does not work because of immutability
 
-        let newProducts = [...this.state.products];
-        let newProduct = {...newProducts[i]};
-        newProduct.current=cnt;
-        newProducts[i] = newProduct;
-        this.setState({products: newProducts});
+        let products = [...this.state.products];
+        products[i] = {...products[i], current : cnt};
+        this.setState({products: products});
 
     }
 
 
     render() {
 
-        let totalPriceForOneProduct = this.state.products.reduce((sum,product)=> sum + (product.price * product.current), 0);
+        let totalPrice = this.state.products.reduce((sum,product)=> sum + (product.price * product.current), 0);
 
         let productRows = this.state.products.map((product, i) => {
             // this.setState({total: this.state.total + product.price * product.current});
@@ -54,6 +36,7 @@ export default class extends React.Component {
                         onChange={(cnt)=> this.changeCnt(i,cnt)}/>
                     </td>
                     <td>{product.price * product.current}</td>
+                    <td></td>
                    
                 </tr>
             )
@@ -70,10 +53,11 @@ export default class extends React.Component {
                             <td>Price</td>
                             <td>Count</td>
                             <td>Total</td>
+                            <td>Delete</td>
                         </tr>
 
                         {productRows}
-                        <tr><td colSpan="4">{totalPriceForOneProduct}</td></tr>
+                        <tr><td colSpan="4">{totalPrice}</td></tr>
                     </tbody>
                 </table>
 
@@ -81,4 +65,39 @@ export default class extends React.Component {
         );
 
     }
+}
+
+function getProducts(){
+   return [
+        {
+            id: 100,
+            title: "Iphone",
+            price: 10000,
+            rest: 20,
+            current: 1
+        },
+        {
+            id: 101,
+            title: "Samsung",
+            price: 20000,
+            rest: 13,
+            current: 1
+        },
+        {
+            id: 102,
+            title: "Nokia",
+            price: 30000,
+            rest: 8,
+            current: 1
+        },
+        {
+            id: 103,
+            title: "Huawei",
+            price: 30000,
+            rest: 8,
+            current: 1
+        }
+
+
+    ]
 }
