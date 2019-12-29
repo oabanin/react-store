@@ -4,9 +4,14 @@ import AppMinMax from './hw/5-norm';
 
 export default class extends React.Component {
     state = {
-        products: getProducts()
+        products: getProducts(),
+        formDone : false
     }
 
+
+    sendForm = (e) => {
+        console.log(e);
+    }
 
     changeCnt(i, cnt) {
 
@@ -74,7 +79,8 @@ export default class extends React.Component {
                         <tr><td colSpan="4">Total (Array.map+=) - {total}</td></tr>
                     </tbody>
                 </table>
-
+            <hr />
+            <button onClick={(e)=> this.sendForm(e)}>FINISH</button>
             </div>
         );
 
