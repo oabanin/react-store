@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 export default class extends React.Component {
 
+
+    
     static defaultProps = {
         onChange: function(cnt){
         }
@@ -51,6 +53,7 @@ export default class extends React.Component {
     }
 
     render() {
+
         return (
             <div>
                 {this.props.min} - props.min <br/>

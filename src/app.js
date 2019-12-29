@@ -8,20 +8,26 @@ export default class extends React.Component {
     }
 
 
-    changeCnt(i,cnt){
+    changeCnt(i, cnt) {
 
         //this.state.products[i].current = cnt; does not work because of immutability
 
         let products = [...this.state.products];
-        products[i] = {...products[i], current : cnt};
-        this.setState({products: products});
+        products[i] = { ...products[i], current: cnt };
+        this.setState({ products: products });
 
     }
 
+    remove = (i) => {
+        let products = [...this.state.products];
+        products.splice(i,1);
+        this.setState({products:products});
+        console.log(i);
+    }
 
     render() {
 
-        let totalPrice = this.state.products.reduce((sum,product)=> sum + (product.price * product.current), 0);
+        let totalPrice = this.state.products.reduce((sum, product) => sum + (product.price * product.current), 0);
 
         let productRows = this.state.products.map((product, i) => {
             // this.setState({total: this.state.total + product.price * product.current});
@@ -33,29 +39,35 @@ export default class extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.current}
-                        onChange={(cnt)=> this.changeCnt(i,cnt)}/>
+                        onChange={(cnt) => { this.changeCnt(i, cnt)}} />
                     </td>
                     <td>{product.price * product.current}</td>
-                    <td></td>
-                   
+                    <td>
+                        <button onClick={(e)=> this.remove(i)}>
+                            X
+                        </button>
+                    </td>
+
                 </tr>
             )
         });
 
 
         return (
+
             <div>
                 <h3>Cart</h3>
                 <table border="1">
-                    <tbody>
+                    <thead>
                         <tr>
                             <td>Title</td>
                             <td>Price</td>
                             <td>Count</td>
                             <td>Total</td>
-                            <td>Delete</td>
+                            <td>Actions</td>
                         </tr>
-
+                    </thead>
+                    <tbody>
                         {productRows}
                         <tr><td colSpan="4">{totalPrice}</td></tr>
                     </tbody>
@@ -67,8 +79,8 @@ export default class extends React.Component {
     }
 }
 
-function getProducts(){
-   return [
+function getProducts() {
+    return [
         {
             id: 100,
             title: "Iphone",
