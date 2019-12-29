@@ -21,15 +21,16 @@ export default class extends React.Component {
     remove = (i) => {
         let products = [...this.state.products];
         products.splice(i,1);
-        this.setState({products:products});
+        this.setState({products});
         console.log(i);
     }
 
     render() {
-
+        let total = 0;
         let totalPrice = this.state.products.reduce((sum, product) => sum + (product.price * product.current), 0);
 
         let productRows = this.state.products.map((product, i) => {
+            total += product.price * product.current;
             // this.setState({total: this.state.total + product.price * product.current});
             return (
                 <tr key={product.id}>
@@ -69,7 +70,8 @@ export default class extends React.Component {
                     </thead>
                     <tbody>
                         {productRows}
-                        <tr><td colSpan="4">{totalPrice}</td></tr>
+                        <tr><td colSpan="4">Total (Array.reduce) - {totalPrice}</td></tr>
+                        <tr><td colSpan="4">Total (Array.map+=) - {total}</td></tr>
                     </tbody>
                 </table>
 
