@@ -5,12 +5,12 @@ import AppMinMax from './hw/5-norm';
 export default class extends React.Component {
     state = {
         products: getProducts(),
-        formDone : false
+        formDone: false
     }
 
 
-    sendForm = (e) => {
-        console.log(e);
+    sendForm = () => {
+        this.setState({ formDone: true });
     }
 
     changeCnt(i, cnt) {
@@ -25,8 +25,8 @@ export default class extends React.Component {
 
     remove = (i) => {
         let products = [...this.state.products];
-        products.splice(i,1);
-        this.setState({products});
+        products.splice(i, 1);
+        this.setState({ products });
         console.log(i);
     }
 
@@ -45,11 +45,11 @@ export default class extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.current}
-                        onChange={(cnt) => { this.changeCnt(i, cnt)}} />
+                        onChange={(cnt) => { this.changeCnt(i, cnt) }} />
                     </td>
                     <td>{product.price * product.current}</td>
                     <td>
-                        <button onClick={(e)=> this.remove(i)}>
+                        <button onClick={(e) => this.remove(i)}>
                             X
                         </button>
                     </td>
@@ -59,28 +59,14 @@ export default class extends React.Component {
         });
 
 
+        let cart = this.state.formDone ?
+            showCongrats() :
+            showForm(totalPrice, total, productRows, this.sendForm);
         return (
 
             <div>
-                <h3>Cart</h3>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <td>Title</td>
-                            <td>Price</td>
-                            <td>Count</td>
-                            <td>Total</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {productRows}
-                        <tr><td colSpan="4">Total (Array.reduce) - {totalPrice}</td></tr>
-                        <tr><td colSpan="4">Total (Array.map+=) - {total}</td></tr>
-                    </tbody>
-                </table>
-            <hr />
-            <button onClick={(e)=> this.sendForm(e)}>FINISH</button>
+                {cart}
+
             </div>
         );
 
@@ -120,4 +106,38 @@ function getProducts() {
 
 
     ]
+}
+
+function showForm(totalPrice, total, productRows, send) {
+    return (
+        <div>
+            <h3>Cart</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Price</td>
+                        <td>Count</td>
+                        <td>Total</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {productRows}
+                    <tr><td colSpan="4">Total (Array.reduce) - {totalPrice}</td></tr>
+                    <tr><td colSpan="4">Total (Array.map+=) - {total}</td></tr>
+                </tbody>
+            </table>
+            <hr />
+            <button onClick={send}>FINISH</button>
+        </div>
+    );
+}
+
+function showCongrats() {
+    return (
+        <div>
+            Congratulation. Form is finished
+        </div>
+    )
 }
