@@ -33,10 +33,8 @@ export default class extends React.Component {
     render() {
         let total = 0;
         let totalPrice = this.state.products.reduce((sum, product) => sum + (product.price * product.current), 0);
-
         let productRows = this.state.products.map((product, i) => {
             total += product.price * product.current;
-            // this.setState({total: this.state.total + product.price * product.current});
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
@@ -66,7 +64,6 @@ export default class extends React.Component {
 
             <div>
                 {cart}
-
             </div>
         );
 
