@@ -1,6 +1,6 @@
 import React from 'react';
-import AppMinMax from './hw/5-norm';
-//import DeleteButton from'./6-deleteButton'
+import AppMinMax from './inputs/minmax';
+
 
 export default class extends React.Component {
     state = {
@@ -22,6 +22,8 @@ export default class extends React.Component {
         this.setState({ products: products });
 
     }
+
+
 
     remove = (i) => {
         let products = [...this.state.products];
@@ -64,6 +66,8 @@ export default class extends React.Component {
 
             <div>
                 {cart}
+                <hr/>
+                <button onClick={() =>  this.changeCnt(1, 4)}>Unreal change CNT</button>
             </div>
         );
 

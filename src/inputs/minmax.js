@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 export default class extends React.Component {
 
+
+
     static defaultProps = {
-        onChange: function(cnt){
+        onChange: function (cnt) {
         }
     }
 
@@ -16,7 +18,15 @@ export default class extends React.Component {
     }
 
     state = {
-        inputValue : this.props.cnt
+        inputValue: this.props.cnt
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.cnt !== this.props.cnt
+            && this.props.cnt !== this.state.inputValue) {
+            console.log("componentDidUpdate");
+            this.setState({inputValue: this.props.cnt})
+        }
     }
 
     increase = () => {
@@ -33,8 +43,8 @@ export default class extends React.Component {
         this.props.onChange(cnt);
     }
 
-    setValue(newStr){
-        this.setState({ inputValue : newStr })
+    setValue(newStr) {
+        this.setState({ inputValue: newStr })
 
     }
 
@@ -45,23 +55,23 @@ export default class extends React.Component {
     }
 
     checkEnterKey = (e) => {
-        if(e.keyCode === 13){
+        if (e.keyCode === 13) {
             this.appyValue();
         }
     }
 
     render() {
-        console.log(this.props);
+
         return (
             <div>
-                {this.props.min} - props.min <br/>
-            {this.state.cnt} - state.cnt <br/>
-            {this.state.inputValue} - state.inputValue<br/>
+                {this.props.min} - props.min <br />
+                {this.state.cnt} - state.cnt <br />
+                {this.state.inputValue} - state.inputValue<br />
                 <button onClick={this.decrease}>-</button>
                 <input value={this.state.inputValue}
-                       onChange={(e) => this.setValue(e.target.value)}
-                       onBlur={this.appyValue}
-                       onKeyUp={this.checkEnterKey} />
+                    onChange={(e) => this.setValue(e.target.value)}
+                    onBlur={this.appyValue}
+                    onKeyUp={this.checkEnterKey} />
                 <button onClick={this.increase}>+</button>
             </div>
         );
