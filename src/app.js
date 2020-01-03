@@ -1,5 +1,5 @@
 import React from 'react';
-import AppMinMax from './inputs/minmax';
+import AppMinMax from './inputs/minmax/minmax';
 
 
 export default class extends React.Component {

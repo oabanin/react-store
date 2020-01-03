@@ -23,7 +23,7 @@ export default class extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cnt !== this.props.cnt
-            && this.props.cnt !== this.state.inputValue) {
+            && this.props.cnt != this.state.inputValue) {
             console.log("componentDidUpdate");
             this.setState({inputValue: this.props.cnt})
         }
