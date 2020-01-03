@@ -25,16 +25,16 @@ export default class extends React.Component {
                     value={this.state.inp1}
                     onChange={(e) => { this.setState({ inp1: e.target.value }); console.log(this) }} />
                 <h2>Lazy input no lazy</h2>
-                {this.state.inp1}<br />
+                {this.state.inp2}<br />
                 <AppLazyInput
                     nativeProps={{
                         type: 'text',
                         className: 'some',
                         onChange: (e) => {
-                            this.setState({ inp1: e.target.value })
+                            this.setState({ inp2: e.target.value })
                         }
                     }}
-                    value={this.state.inp1}
+                    value={this.state.inp2}
                 />
             </div>
 
