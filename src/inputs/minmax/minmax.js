@@ -45,7 +45,7 @@ export default class extends React.Component {
             <div>
                 
                 <button onClick={this.decrease}>-</button>
-                <AppLazyInput value={this.props.cnt} onChange={this.onChange} />
+                <AppLazyInput value={this.props.cnt} onChange={this.onChange} nativeProps={{className:"classname"}} />
                 <button onClick={this.increase}>+</button>
             </div>
         );

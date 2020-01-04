@@ -12,7 +12,8 @@ export default class extends React.Component {
 
     static propTypes = {
         onChange: PropTypes.func,
-        nativeProps: PropTypes.object
+        nativeProps: PropTypes.object,
+        value: PropTypes.any.isRequired,
     }
 
     componentDidUpdate(prevProps, prevState) {
