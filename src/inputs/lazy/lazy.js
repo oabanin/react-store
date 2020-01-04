@@ -7,11 +7,10 @@ export default class extends React.Component {
 
     static defaultProps = {
         onChange: function (cnt) { },
-        nativeProps: []
+        nativeProps: {}
     }
 
     static propTypes = {
-        min: PropTypes.any.isRequired,
         onChange: PropTypes.func,
         nativeProps: PropTypes.object
     }
@@ -43,6 +42,7 @@ export default class extends React.Component {
         return (
 
             <input  {...this.props.nativeProps}
+            
                 defaultValue={this.props.value}
                 onBlur={this.checkChange}
                 onKeyUp={this.checkEnterKey}

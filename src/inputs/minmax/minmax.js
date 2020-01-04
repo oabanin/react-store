@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AppLazyInput from './../lazy/lazy';
 
 export default class extends React.Component {
-
 
 
     static defaultProps = {
@@ -17,17 +17,7 @@ export default class extends React.Component {
         onChange: PropTypes.func
     }
 
-    state = {
-        inputValue: this.props.cnt
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.cnt !== this.props.cnt
-            && this.props.cnt != this.state.inputValue) {
-            console.log("componentDidUpdate");
-            this.setState({inputValue: this.props.cnt})
-        }
-    }
+   
 
     increase = () => {
         this.set(this.props.cnt + 1);
@@ -39,47 +29,25 @@ export default class extends React.Component {
 
     set(newCnt) {
         let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
-        this.setState({ inputValue: cnt });
         this.props.onChange(cnt);
     }
 
-    setValue(newStr) {
-        this.setState({ inputValue: newStr })
 
-    }
-
-
-    appyValue = () => {
-        let cnt = parseInt(this.state.inputValue);
+    onChange = (e) => {
+        let cnt = parseInt(e.target.value);
         this.set(isNaN(cnt) ? this.state.min : cnt);
     }
 
-    checkEnterKey = (e) => {
-        if (e.keyCode === 13) {
-            this.appyValue();
-        }
-    }
 
     render() {
 
         return (
             <div>
-                {this.props.min} - props.min <br />
-                {this.state.cnt} - state.cnt <br />
-                {this.state.inputValue} - state.inputValue<br />
+                
                 <button onClick={this.decrease}>-</button>
-                <input value={this.state.inputValue}
-                    onChange={(e) => this.setValue(e.target.value)}
-                    onBlur={this.appyValue}
-                    onKeyUp={this.checkEnterKey} />
+                <AppLazyInput value={this.props.cnt} onChange={this.onChange} />
                 <button onClick={this.increase}>+</button>
             </div>
         );
     }
 }
-/*
-Some.defaultProps = {
-    min: 1,
-    max: 5
-}
-*/
