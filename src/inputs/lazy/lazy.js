@@ -6,7 +6,7 @@ export default class extends React.Component {
 
 
     static defaultProps = {
-        onChange: function (cnt) {},
+        onChange: function (cnt) { },
         nativeProps: []
     }
 
@@ -17,11 +17,16 @@ export default class extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-
+        let inp = this.nativeInput.current;
+        if (prevProps.value != this.props.value) {
+            inp.value = this.props.value;
+        }
     }
 
-    checkChange = (e) =>{
-        if(e.target.value !== this.props.value){
+    nativeInput = React.createRef();
+
+    checkChange = (e) => {
+        if (e.target.value !== this.props.value) {
             this.props.onChange(e);
         }
     }
@@ -36,11 +41,12 @@ export default class extends React.Component {
     render() {
 
         return (
-            
-            <input  {...this.props.nativeProps} 
-                    defaultValue={this.props.value} 
-                    onBlur={this.checkChange}
-                    onKeyUp={this.checkEnterKey}/>
+
+            <input  {...this.props.nativeProps}
+                defaultValue={this.props.value}
+                onBlur={this.checkChange}
+                onKeyUp={this.checkEnterKey}
+                ref={this.nativeInput} />
         );
     }
 }
