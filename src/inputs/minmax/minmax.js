@@ -34,8 +34,11 @@ export default class extends React.Component {
 
 
     onChange = (e) => {
+        
         let cnt = parseInt(e.target.value);
-        this.set(isNaN(cnt) ? this.state.min : cnt);
+
+        console.log(cnt);
+        this.set(isNaN(cnt) ? this.props.min : cnt);
     }
 
 

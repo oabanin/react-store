@@ -18,7 +18,9 @@ export default class extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         let inp = this.nativeInput.current;
-        if (prevProps.value != this.props.value) {
+        if (prevProps.value !== this.props.value
+            || this.props.value !==inp.value
+            ) {
             inp.value = this.props.value;
         }
     }
@@ -26,7 +28,7 @@ export default class extends React.Component {
     nativeInput = React.createRef();
 
     checkChange = (e) => {
-        if (e.target.value !== this.props.value) {
+        if (e.target.value.toString() !== this.props.value) {
             this.props.onChange(e);
         }
     }
