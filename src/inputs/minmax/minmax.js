@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppLazyInput from './../lazy/lazy';
+import styles from './minmax.module.css';
 
 export default class extends React.Component {
 
@@ -17,7 +18,7 @@ export default class extends React.Component {
         onChange: PropTypes.func
     }
 
-   
+
 
     increase = () => {
         this.set(this.props.cnt + 1);
@@ -34,7 +35,7 @@ export default class extends React.Component {
 
 
     onChange = (e) => {
-        
+
         let cnt = parseInt(e.target.value);
 
         console.log(cnt);
@@ -45,10 +46,13 @@ export default class extends React.Component {
     render() {
 
         return (
-            <div>
-                
+            <div style={{color: 'red'}}>
+
                 <button onClick={this.decrease}>-</button>
-                <AppLazyInput value={this.props.cnt} onChange={this.onChange} nativeProps={{className:"classname"}} />
+                <AppLazyInput
+                    value={this.props.cnt}
+                    onChange={this.onChange}
+                    nativeProps={{ className: styles.input  }} />
                 <button onClick={this.increase}>+</button>
             </div>
         );

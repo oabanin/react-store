@@ -1,6 +1,7 @@
 import React from 'react';
 import AppMinMax from './inputs/minmax/minmax';
-
+import styles from './app.module.css';
+import { Button } from 'react-bootstrap';
 
 export default class extends React.Component {
     state = {
@@ -42,6 +43,7 @@ export default class extends React.Component {
                     <td>{product.title}</td>
                     <td>{product.price}</td>
                     <td><AppMinMax
+
                         min={1}
                         max={product.rest}
                         cnt={product.current}
@@ -67,7 +69,8 @@ export default class extends React.Component {
             <div>
                 {cart}
                 <hr/>
-                <button onClick={() =>  this.changeCnt(1, 4)}>Unreal change CNT</button>
+                <Button variant="secondary" onClick={() =>  this.changeCnt(1, 4)}>Unreal change CNT</Button>
+                <input className={styles.input}/>
             </div>
         );
 
@@ -113,7 +116,7 @@ function showForm(totalPrice, total, productRows, send) {
     return (
         <div>
             <h3>Cart</h3>
-            <table border="1">
+            <table className="border table-bordered">
                 <thead>
                     <tr>
                         <td>Title</td>

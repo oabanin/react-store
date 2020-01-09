@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './lazy.css';
 
 export default class extends React.Component {
 
@@ -45,7 +46,6 @@ export default class extends React.Component {
         return (
 
             <input  {...this.props.nativeProps}
-            
                 defaultValue={this.props.value}
                 onBlur={this.checkChange}
                 onKeyUp={this.checkEnterKey}
