@@ -6,12 +6,34 @@ import { Button } from 'react-bootstrap';
 export default class extends React.Component {
     state = {
         products: getProducts(),
-        formDone: false
+        formData: {
+            name: {
+                label:"Your name",
+                value:""
+            },
+            email: {
+                label:"Email",
+                value:""
+            },
+            label: {
+                label:"Phone",
+                value:""
+            }
+        },
+        activeRout: 'CART'
     }
 
 
-    sendForm = () => {
-        this.setState({ formDone: true });
+    moveToCart = () => {
+        this.setState({ activeRout: 'CART' });
+    }
+
+    moveToOrder = () => {
+        this.setState({ activeRout: 'ORDER' });
+    }
+
+    moveToResult = () => {
+        this.setState({ activeRout: 'RESULT' });
     }
 
     changeCnt(i, cnt) {
