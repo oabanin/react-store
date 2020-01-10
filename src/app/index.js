@@ -59,9 +59,9 @@ name
     }
     
     changeformData = (label, value) => {
-            let newFormData = {...this.state.formData};
-            newFormData[label] = {...newFormData[label], value:value};
-            this.setState({formData:newFormData})
+            let formData = {...this.state.formData};
+            formData[label] = {...formData[label], value};
+            this.setState({formData})
 
 
         
