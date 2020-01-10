@@ -1,7 +1,12 @@
 import React from 'react';
 import AppMinMax from '../inputs/minmax';
 import styles from './app.module.css';
-import { Button } from 'react-bootstrap';
+import Cart from "~/cart";
+import Order from "~/order";
+import Result from "~/result";
+
+
+
 
 export default class extends React.Component {
     state = {
@@ -36,7 +41,7 @@ export default class extends React.Component {
         this.setState({ activeRoute: 'RESULT' });
     }
 
-    changeCnt(i, cnt) {
+    changeCnt = (i, cnt) => {
 
         //this.state.products[i].current = cnt; does not work because of immutability
 
@@ -45,8 +50,6 @@ export default class extends React.Component {
         this.setState({ products: products });
 
     }
-
-
 
     remove = (i) => {
         let products = [...this.state.products];
@@ -59,15 +62,19 @@ export default class extends React.Component {
         let page;
 
         switch (this.state.activeRoute) {
-           /* case 'CART':
-                page = <Cart />
+           case 'CART':
+                page = <Cart 
+                products={this.state.products}
+                onSend={this.moveToOrder}
+                onChange={this.changeCnt}
+                onRemove={this.remove} />
                 break;
             case 'ORDER':
                 page = <Order />
                 break;
             case 'RESULT':
                 page = <Result />
-                break;*/
+                break;
             default:
                 page = <div>404</div>
         }
