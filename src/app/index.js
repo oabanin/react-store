@@ -36,7 +36,7 @@ export default class extends React.Component {
     moveToOrder = () => {
         this.setState({ activeRoute: 'ORDER' });
     }
-
+name
     moveToResult = () => {
         this.setState({ activeRoute: 'RESULT' });
     }
@@ -57,6 +57,16 @@ export default class extends React.Component {
         this.setState({ products });
         console.log(i);
     }
+    
+    changeformData = (label, value) => {
+            let newFormData = {...this.state.formData};
+            newFormData[label] = {...newFormData[label], value:value};
+            this.setState({formData:newFormData})
+
+
+        
+
+    }
 
     render() {
         let page;
@@ -70,7 +80,11 @@ export default class extends React.Component {
                 onRemove={this.remove} />
                 break;
             case 'ORDER':
-                page = <Order />
+                page = <Order 
+                formData={this.state.formData}
+                onSend={this.moveToResult}
+                onChange={this.changeformData}
+                onBack={this.moveToCart} />
                 break;
             case 'RESULT':
                 page = <Result />

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './lazy.css';
+//import './lazy.css';
 
 export default class extends React.Component {
 
