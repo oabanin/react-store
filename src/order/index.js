@@ -11,6 +11,22 @@ export default class extends React.Component {
 
     }
 
+    state = {
+        showModal:false
+    }
+
+    show(){
+        this.setState({showModal:true});
+    }
+
+    hide(){
+        this.hide();
+        this.setState({showModal:false});
+    }
+
+    confirm(){
+        this.props.onSend();
+    }
 
     render() {
         let fromFields = [];
@@ -22,6 +38,8 @@ export default class extends React.Component {
                                 <Form.Control type="text" value={field.value} onChange={(e) => this.props.onChange(name, e.target.value)}/>
                             </Form.Group>)
         }
+
+        console.log(fromFields);
         return (
             <div>
                 <h2>Order</h2>
@@ -29,6 +47,8 @@ export default class extends React.Component {
 
             <Form>
                 {fromFields}
+
+                
             </Form>
             <Button variant="warning" onClick={this.props.onBack}>Back to cart</Button>&nbsb;
             <Button variant="primary" onClick={this.props.onSend}>Apply order 
