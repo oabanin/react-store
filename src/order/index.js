@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 export default class extends React.Component {
     static propTypes = {
@@ -12,19 +12,19 @@ export default class extends React.Component {
     }
 
     state = {
-        showModal:false
+        showModal: false
     }
 
-    show(){
-        this.setState({showModal:true});
+    show = () => {
+        this.setState({ showModal: true });
     }
 
-    hide(){
+    hide = () => {
+        this.setState({ showModal: false });
+    }
+
+    confirm = () => {
         this.hide();
-        this.setState({showModal:false});
-    }
-
-    confirm(){
         this.props.onSend();
     }
 
@@ -34,25 +34,41 @@ export default class extends React.Component {
         for (let name in this.props.formData) {
             let field = this.props.formData[name];
             fromFields.push(<Form.Group key={name} controlId={"order-form-" + name}>
-                                <Form.Label>{field.label}</Form.Label>
-                                <Form.Control type="text" value={field.value} onChange={(e) => this.props.onChange(name, e.target.value)}/>
-                            </Form.Group>)
+                <Form.Label>{field.label}</Form.Label>
+                <Form.Control type="text" value={field.value} onChange={(e) => this.props.onChange(name, e.target.value)} />
+            </Form.Group>)
         }
 
         console.log(fromFields);
         return (
             <div>
                 <h2>Order</h2>
-                <hr/>
+                <hr />
 
-            <Form>
-                {fromFields}
+                <Form>
+                    {fromFields}
+                </Form>
 
-                
-            </Form>
-            <Button variant="warning" onClick={this.props.onBack}>Back to cart</Button>&nbsb;
-            <Button variant="primary" onClick={this.props.onSend}>Apply order 
-            </Button>&nbsb;
+                <Button variant="warning" onClick={this.props.onBack}>Back to cart</Button>
+                <Button variant="primary" onClick={this.show}>Apply order</Button>
+
+                <Modal
+                    show={this.state.showModal}
+                    backdrop='static'
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="example-custom-modal-styling-title">
+                            Check Info
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Content
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="warning" onClick={this.hide}>Back to cart</Button>
+                        <Button variant="primary" onClick={this.confirm}>Apply order</Button>
+                    </Modal.Footer>
+                </Modal>
             </div >
         );
     }
