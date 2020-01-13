@@ -10,7 +10,7 @@ import Result from "~p/result";
 
 export default class extends React.Component {
     state = {
-        products: getProducts(),
+
         formData: {
             name: {
                 label: "Your name",
@@ -41,22 +41,7 @@ name
         this.setState({ activeRoute: 'RESULT' });
     }
 
-    changeCnt = (i, cnt) => {
-
-        //this.state.products[i].current = cnt; does not work because of immutability
-
-        let products = [...this.state.products];
-        products[i] = { ...products[i], current: cnt };
-        this.setState({ products: products });
-
-    }
-
-    remove = (i) => {
-        let products = [...this.state.products];
-        products.splice(i, 1);
-        this.setState({ products });
-        console.log(i);
-    }
+    
     
     changeformData = (label, value) => {
             let formData = {...this.state.formData};
@@ -74,10 +59,7 @@ name
         switch (this.state.activeRoute) {
            case 'CART':
                 page = <Cart 
-                products={this.state.products}
-                onSend={this.moveToOrder}
-                onChange={this.changeCnt}
-                onRemove={this.remove} />
+                onSend={this.moveToOrder} />
                 break;
             case 'ORDER':
                 page = <Order 
@@ -94,43 +76,11 @@ name
         }
         return (
             <div className="container">
+                <button onClick={()=> this.forceUpdate()}>Force Update</button>
+                <hr/>
                 {page}
             </div>
         );
     }
 }
-
-function getProducts() {
-    return [
-        {
-            id: 100,
-            title: "Iphone",
-            price: 1,
-            rest: 20,
-            current: 1
-        },
-        {
-            id: 101,
-            title: "Samsung",
-            price: 10,
-            rest: 13,
-            current: 1
-        },
-        {
-            id: 102,
-            title: "Nokia",
-            price: 100,
-            rest: 8,
-            current: 1
-        },
-        {
-            id: 103,
-            title: "Huawei",
-            price: 1000,
-            rest: 8,
-            current: 1
-        }
-
-
-    ]
-}
+ 

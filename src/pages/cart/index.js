@@ -1,22 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppMinMax from '~c/inputs/minmax';
+import cartModel from '~s/cart.js';
 
 export default class extends React.Component {
 
     static propTypes = {
-        products: PropTypes.array.isRequired,
-        onSend: PropTypes.func.isRequired,
-        onChange: PropTypes.func.isRequired,
-        onRemove: PropTypes.func.isRequired
+        onSend: PropTypes.func.isRequired
     }
 
 
     render() {
-        let total = 0;
-        let totalPrice = this.props.products.reduce((sum, product) => sum + (product.price * product.current), 0);
-        let productRows = this.props.products.map((product, i) => {
-            total += product.price * product.current;
+        let productRows = cartModel.products.map((product, i) => {
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
@@ -25,11 +20,11 @@ export default class extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.current}
-                        onChange={(cnt) => { this.props.onChange(i, cnt) }} />
+                        onChange={(cnt) => { cartModel.change(i, cnt) }} />
                     </td>
                     <td>{product.price * product.current}</td>
                     <td>
-                        <button onClick={(e) => this.props.onRemove(i)}>
+                        <button onClick={(e) => cartModel.remove(i)}>
                             X
                         </button>
                     </td>
@@ -56,8 +51,8 @@ export default class extends React.Component {
                     </thead>
                     <tbody>
                         {productRows}
-                        <tr><td colSpan="4">Total (Array.reduce) - {totalPrice}</td></tr>
-                        <tr><td colSpan="4">Total (Array.map+=) - {total}</td></tr>
+
+                        <tr><td colSpan="4">Total - {cartModel.total}</td></tr>
                     </tbody>
                 </table>
                 <hr />
