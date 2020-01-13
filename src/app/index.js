@@ -1,9 +1,9 @@
 import React from 'react';
-import AppMinMax from '../inputs/minmax';
+import AppMinMax from '~c/inputs/minmax';
 import styles from './app.module.css';
-import Cart from "~/cart";
-import Order from "~/order";
-import Result from "~/result";
+import Cart from "~p/cart";
+import Order from "~p/order";
+import Result from "~p/result";
 
 
 

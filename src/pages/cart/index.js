@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppMinMax from '~/inputs/minmax';
+import AppMinMax from '~c/inputs/minmax';
 
 export default class extends React.Component {
 
