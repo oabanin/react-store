@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 //import './lazy.css';
 
-export default class extends React.Component {
+export default  class extends React.Component {
 
 
 
@@ -38,11 +38,12 @@ export default class extends React.Component {
     }
 
     render() {
-
         return (
 
             <input  {...this.props.nativeProps}
-                defaultValue={this.props.value}
+                //defaultValue={this.props.value}
+                value={this.props.value}
+                onChange={()=>{}}
                 onBlur={this.checkChange}
                 onKeyUp={this.checkEnterKey}
                 ref={this.nativeInput} />

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import AppLazyInput from '../lazy';
 import styles from './minmax.module.css';
 
-export default class extends React.Component {
+import {observer} from 'mobx-react';
+
+export default @observer class extends React.Component {
 
     
 
@@ -48,10 +50,11 @@ export default class extends React.Component {
 
 
     render() {
-
+        //console.log(   this.props.cnt);
         return (
+            
             <div style={{color: 'red'}}>
-
+             
                 <button onClick={this.decrease}>-</button>
                 <AppLazyInput
                     value={this.props.cnt}
