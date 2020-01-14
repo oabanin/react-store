@@ -5,6 +5,7 @@ import styles from './minmax.module.css';
 
 export default class extends React.Component {
 
+    
 
     static defaultProps = {
         onChange: function (cnt) {
@@ -18,7 +19,7 @@ export default class extends React.Component {
         onChange: PropTypes.func
     }
 
-
+    lazyInput = React.createRef();
 
     increase = () => {
         this.set(this.props.cnt + 1);
@@ -31,15 +32,18 @@ export default class extends React.Component {
     set(newCnt) {
         let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
         this.props.onChange(cnt);
+        return cnt;
+        
     }
 
 
     onChange = (e) => {
-
         let cnt = parseInt(e.target.value);
-
-        console.log(cnt);
-        this.set(isNaN(cnt) ? this.props.min : cnt);
+        let realCnt = this.set(isNaN(cnt) ? this.props.min : cnt);
+        if(realCnt.toString() !== e.target.value){
+            console.log('HARD SET VALUE');
+            this.lazyInput.current.setValue(realCnt);
+        }
     }
 
 
@@ -52,7 +56,8 @@ export default class extends React.Component {
                 <AppLazyInput
                     value={this.props.cnt}
                     onChange={this.onChange}
-                    nativeProps={{ className: styles.input  }} />
+                    nativeProps={{ className: styles.input  }}
+                    ref={this.lazyInput} />
                 <button onClick={this.increase}>+</button>
             </div>
         );
