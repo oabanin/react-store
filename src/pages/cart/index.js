@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppMinMax from '~c/inputs/minmax';
 import cartModel from '~s/cart.js';
+import router from '~s/router.js'
 
 export default class extends React.Component {
-
-    static propTypes = {
-        onSend: PropTypes.func.isRequired
-    }
-
 
     render() {
         let productRows = cartModel.products.map((product, i) => {
@@ -56,7 +52,7 @@ export default class extends React.Component {
                     </tbody>
                 </table>
                 <hr />
-                <button className="btn btn-primary" onClick={this.props.onSend}>FINISH</button>
+                <button className="btn btn-primary" onClick={() => router.moveTo('order')}>FINISH</button>
             </div>
         );
 

@@ -12,7 +12,7 @@ class Router {
         result: () => <Result />
     }
 
-    activeRoute = 'cart';
+    activeRoute = 'order';
 
     get component() {
         return this.routs[this.activeRoute]();

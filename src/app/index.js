@@ -3,7 +3,6 @@ import styles from './app.module.css';
 import router from '~s/router.js'
 
 
-
 export default class extends React.Component {
     render() {
         return (
