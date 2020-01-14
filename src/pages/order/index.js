@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {observer} from 'mobx-react'
 import { Button, Form, Modal } from 'react-bootstrap';
 
-export default class extends React.Component {
+export default @observer class extends React.Component {
    render(){
 
     return (

@@ -23,7 +23,10 @@ let conf = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ["@babel/plugin-transform-react-jsx", "@babel/plugin-proposal-class-properties"]
+            plugins: ["@babel/plugin-transform-react-jsx",
+              ["@babel/plugin-proposal-decorators", { "legacy": true }],
+              ["@babel/plugin-proposal-class-properties", { "loose": true }]
+            ]
           }
         }
       },
@@ -42,7 +45,7 @@ let conf = {
             {
               importLoaders: 1,
               modules: {
-                localIdentName:"[local]__[sha1:hash:hex:7]"
+                localIdentName: "[local]__[sha1:hash:hex:7]"
               }
             }
 

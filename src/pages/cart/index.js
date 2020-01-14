@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import AppMinMax from '~c/inputs/minmax';
 import cartModel from '~s/cart.js';
 import router from '~s/router.js'
+import {observer} from 'mobx-react'
 
-export default class extends React.Component {
+export default @observer class extends React.Component {
 
     render() {
         let productRows = cartModel.products.map((product, i) => {
@@ -47,10 +48,10 @@ export default class extends React.Component {
                     </thead>
                     <tbody>
                         {productRows}
-
-                        <tr><td colSpan="4">Total - {cartModel.total}</td></tr>
+                      
                     </tbody>
                 </table>
+                Total - {cartModel.total}
                 <hr />
                 <button className="btn btn-primary" onClick={() => router.moveTo('order')}>FINISH</button>
             </div>
