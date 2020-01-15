@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 //import './lazy.css';
 
-export default  class extends React.Component {
+export default class extends React.Component {
 
 
+    state = {
+        inputValue: this.props.value
+    }
+
+    onChange = (newValue) => {
+        this.setState({inputValue:newValue});
+    }
 
     static defaultProps = {
         onChange: function (cnt) { },
@@ -19,8 +26,8 @@ export default  class extends React.Component {
 
     nativeInput = React.createRef();
 
-    setValue(value){
-        this.nativeInput.current.value=value;
+    setValue(value) {
+        this.nativeInput.current.value = value;
     }
 
 
@@ -41,9 +48,7 @@ export default  class extends React.Component {
         return (
 
             <input  {...this.props.nativeProps}
-                //defaultValue={this.props.value}
-                value={this.props.value}
-                onChange={()=>{}}
+                defaultValue={this.props.value}
                 onBlur={this.checkChange}
                 onKeyUp={this.checkEnterKey}
                 ref={this.nativeInput} />
