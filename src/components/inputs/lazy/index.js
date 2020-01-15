@@ -5,6 +5,13 @@ import PropTypes from 'prop-types';
 export default class extends React.Component {
 
 
+    state = {
+        inputValue: this.props.value
+    }
+
+    onChange = (newValue) => {
+        this.setState({inputValue:newValue});
+    }
 
     static defaultProps = {
         onChange: function (cnt) { },
@@ -47,7 +54,6 @@ export default class extends React.Component {
     }
 
     render() {
-
         return (
 
             <input  {...this.props.nativeProps}

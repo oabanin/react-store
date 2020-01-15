@@ -53,7 +53,7 @@ export default @observer class extends React.Component {
                 </table>
                 Total - {cartModel.total}
                 <hr />
-                <button className="btn btn-primary" onClick={() => router.moveTo('order')}>FINISH</button>
+                <button className="btn btn-primary" onClick={() => router.moveTo('order')}>NExt PAge</button>
             </div>
         );
 

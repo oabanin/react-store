@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import AppLazyInput from '../lazy';
 import styles from './minmax.module.css';
 
-export default class extends React.Component {
+import {observer} from 'mobx-react';
+
+export default @observer class extends React.Component {
 
     
 
@@ -23,10 +25,12 @@ export default class extends React.Component {
 
     increase = () => {
         this.set(this.props.cnt + 1);
+        this.lazyInput.current.setValue(this.set(isNaN(this.props.cnt + 1) ? this.props.min : this.props.cnt + 1));
     }
 
     decrease = () => {
         this.set(this.props.cnt - 1);
+        this.lazyInput.current.setValue(this.set(isNaN(this.props.cnt - 1) ? this.props.min : this.props.cnt - 1));
     }
 
     set(newCnt) {
@@ -44,14 +48,15 @@ export default class extends React.Component {
             console.log('HARD SET VALUE');
             this.lazyInput.current.setValue(realCnt);
         }
+        this.forceUpdate();
     }
 
 
     render() {
-
         return (
+            
             <div style={{color: 'red'}}>
-
+             
                 <button onClick={this.decrease}>-</button>
                 <AppLazyInput
                     value={this.props.cnt}
