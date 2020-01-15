@@ -29,7 +29,7 @@ export default class extends React.Component {
 
     confirm = () => {
         this.hide();
-        router.moveTo('cart');
+        router.moveTo('result');
     }
 
     render() {
@@ -78,4 +78,3 @@ export default class extends React.Component {
     }
 }
 
-}
