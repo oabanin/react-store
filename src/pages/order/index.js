@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react'
 import router from '~s/router.js'
 import cartModel from '~s/cart.js';
+import formDataModel from '~s/order.js';
 import { Button, Form, Modal } from 'react-bootstrap';
 
-export default class extends React.Component {
+export default @observer class extends React.Component {
     /*static propTypes = {
         formData: PropTypes.object.isRequired,
         onChange: PropTypes.func.isRequired,
@@ -35,15 +36,19 @@ export default class extends React.Component {
     render() {
         let fromFields = [];
 
-        for (let name in cartModel.products) {
-            let field = cartModel.products[name];
+        for (let name in formDataModel.formData) {
+            let field = formDataModel.formData[name];
             fromFields.push(<Form.Group key={name} controlId={"order-form-" + name}>
                 <Form.Label>{field.label}</Form.Label>
-                <Form.Control type="text" value={field.value} onChange={(e) => this.props.onChange(name, e.target.value)} />
+                <Form.Control type="text" value={field.value} onChange={
+                    (e) => {
+                    formDataModel.changeData(name, e.target.value)
+                }
+            }
+                 />
             </Form.Group>)
         }
 
-        console.log(fromFields);
         return (
             <div>
                 <h2>Order</h2>
