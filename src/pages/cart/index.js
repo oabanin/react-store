@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppMinMax from '~c/inputs/minmax';
 import cartModel from '~s/cart.js';
-import router from '~s/router.js'
+
 import {observer} from 'mobx-react'
+
 
 export default @observer class extends React.Component {
 
-    nextStep(){
-        router.moveTo('order');
-    }
+   
     render() {
         let productRows = cartModel.products.map((product, i) => {
             return (
