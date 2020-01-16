@@ -5,7 +5,7 @@ import styles from './minmax.module.css';
 
 import {observer} from 'mobx-react';
 
-export default @observer class extends React.Component {
+export default @observer class extends React.PureComponent {
 
     
 
@@ -53,6 +53,7 @@ export default @observer class extends React.Component {
 
 
     render() {
+        console.log("minmax render");
         return (
             
             <div style={{color: 'red'}}>

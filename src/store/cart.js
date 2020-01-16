@@ -3,8 +3,15 @@ import {observable, computed, action} from 'mobx';
 
 class Cart {
     @observable products = getProducts();
+    
     @computed get total() {
         return this.products.reduce((t, pr) => t + pr.price * pr.current, 0)
+    }
+
+    @computed get changeOn(){ //return array of 4 functions for React.PureComponent optimization to prevent from unnecessary Re-render
+        return this.products.map((product,i)=>{
+            return (cnt) => this.change(i,cnt);
+        })
     }
 
     @action change(i, cnt){

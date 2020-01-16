@@ -7,6 +7,9 @@ import {observer} from 'mobx-react'
 
 export default @observer class extends React.Component {
 
+    nextStep(){
+        router.moveTo('order');
+    }
     render() {
         let productRows = cartModel.products.map((product, i) => {
             return (
@@ -17,7 +20,7 @@ export default @observer class extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.current}
-                        onChange={(cnt) => { cartModel.change(i, cnt) }} />
+                        onChange={cartModel.changeOn[i]} />
                     </td>
                     <td>{product.price * product.current}</td>
                     <td>
@@ -53,7 +56,7 @@ export default @observer class extends React.Component {
                 </table>
                 Total - {cartModel.total}
                 <hr />
-                <button className="btn btn-primary" onClick={() => router.moveTo('order')}>NExt PAge</button>
+                <button className="btn btn-primary" onClick={this.nextStep}>NExt PAge</button>
             </div>
         );
 
