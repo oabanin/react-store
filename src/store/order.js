@@ -3,12 +3,24 @@ import { observable, computed, action } from 'mobx';
 
 class formData {
     @observable formData = getformData();
-    /*@computed get total() {
-        return this.formData.reduce((t, pr) => t + pr.price * pr.current, 0)
-    }*/
+
+    @computed get formValid() {
+        return Object.values(this.formData).every(field => field.valid);
+    }
+
+    @computed get data(){
+        let data = {};
+        
+        for(let arrayname in this.formData){
+            data[arrayname] = this.formData[arrayname].value;
+        }
+        return data;
+    }
 
     @action changeData(label, newValue) {
-        this.formData[label].value = newValue;
+        let field = this.formData[label];
+        field.value = newValue;
+        field.valid = field.validator(newValue);
     }
 
 }
@@ -20,15 +32,25 @@ function getformData() {
     return {
         name: {
             label: "Your name",
-            value: "test"
-        },
+            value: "",
+            validator: value => /^[a-zA-Z ]{2,}$/.test(value),
+            errorText: "Latin symbols length of 2 or more",
+            valid: null
+            }
+        ,
         email: {
             label: "Email",
-            value: ""
+            value: "",
+            validator: value => /^.+@.+$/.test(value),
+            errorText: "At sign",
+            valid: null
         },
         label: {
             label: "Phone",
-            value: ""
+            value: "",
+            validator: value => /^\d{7,15}$/.test(value),
+            errorText: "Numbers length of 7 to 15",
+            valid: null
         }
 
     }
