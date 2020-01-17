@@ -33,11 +33,11 @@ export default @observer class extends React.Component {
 
     confirm = () => {
         this.hide();
-        router.moveTo('result');
+        this.props.history.push(routesMap.result);
     }
 
     render() {
-        console.log(this.props);
+  
         let fromFields = [];
 
         for (let name in formDataModel.formData) {
