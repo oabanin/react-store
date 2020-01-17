@@ -6,6 +6,9 @@ import cartModel from '~s/cart.js';
 import formDataModel from '~s/order.js';
 import { Button, Form, Modal } from 'react-bootstrap';
 
+import {Link} from 'react-router-dom';
+import {routesMap} from '~/routes';
+
 export default @observer class extends React.Component {
     /*static propTypes = {
         formData: PropTypes.object.isRequired,
@@ -34,6 +37,7 @@ export default @observer class extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         let fromFields = [];
 
         for (let name in formDataModel.formData) {
@@ -57,7 +61,7 @@ export default @observer class extends React.Component {
                     {fromFields}
                 </Form>
 
-                <Button variant="warning" onClick={() => router.moveTo('cart')}>Back to cart</Button>
+                <Link className="btn btn-warning" to={routesMap.home}>Back to cart</Link>
                 <Button variant="primary" onClick={this.show} disabled={!formDataModel.formValid}>Apply order</Button>
 
                 <Modal

@@ -4,7 +4,7 @@ import routes from '~/routes';
 
 
 import { observer } from 'mobx-react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default @observer class extends React.Component {
     render() {
@@ -18,7 +18,9 @@ export default @observer class extends React.Component {
 
         return (<Router>
             <div className="container">
-                {routesComponents}
+                <Switch>
+                    {routesComponents}
+                </Switch>
             </div>
         </Router>
         );
