@@ -7,6 +7,8 @@ import formDataModel from '~s/order.js';
 
 export default @observer class extends React.Component {
     render() {
+
+        let postsTmp = [1,2,3];
        
         return (<div>
             <h2>Congratultaions</h2>

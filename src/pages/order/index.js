@@ -34,6 +34,7 @@ export default @observer class extends React.Component {
     confirm = () => {
         this.hide();
         this.props.history.push(routesMap.result);
+        console.log(this.props.history);
     }
 
     render() {

@@ -2,6 +2,7 @@ import Cart from "~p/cart";
 import Order from "~p/order";
 import Result from "~p/result";
 import Page404 from "~p/error404";
+import Post from "~p/post";
 
 let routes = [
     {
@@ -20,6 +21,12 @@ let routes = [
         name:'result',
         url: '/done',
         component: Result,
+        exact: true
+    },
+    {
+        name: 'blogPost',
+        url:'/news/:url',
+        component: Post,
         exact: true
     },
     {
