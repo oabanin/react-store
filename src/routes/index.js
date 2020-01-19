@@ -32,10 +32,11 @@ let routes = [
     },
     {
         name: 'blogPost',
-        url: '/news/:url',
+        url: '/post/:url',
         component: Post,
         exact: true
     },
+
     {
         url: '**',
         component: Page404

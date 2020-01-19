@@ -21,9 +21,23 @@ class Cart {
     @action remove(i){
         this.products.splice(i,1);
     }
+
+    
 }
 
-export default new Cart();
+let instanse = new Cart();
+
+let productsMap = {};
+ instanse.products.map(productObject => {
+     if (productObject.hasOwnProperty('id')) {
+        productsMap[productObject.id] = {title: productObject.title,   price:  productObject.price};
+     }
+ })
+
+ 
+
+export default instanse;
+export {productsMap};
 
 
 function getProducts() {
