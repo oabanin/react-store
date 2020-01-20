@@ -17,17 +17,17 @@ export default @observer class extends React.Component {
             let productRows = cartModel.products.map((product, i) => {
             return (
                 <tr key={product.id}>
-                    <td>{product.title}</td>
-                    <td>{product.price}</td>
+                    <td>1</td>
+                    <td>2</td>
                     <td><AppMinMax
                         min={1}
-                        max={product.rest}
-                        cnt={product.current}
-                        onChange={cartModel.changeOn[i]} />
+                        max={5}
+                        cnt={product.cnt}
+                        onChange={(cnt)=> cartModel.change(product.id, cnt)} />
                     </td>
-                    <td>{product.price * product.current}</td>
+                    <td>{1 * product.current}</td>
                     <td>
-                        <button onClick={(e) => cartModel.remove(i)}>
+                        <button onClick={(e) => cartModel.remove(product.id)}>
                             X
                         </button>
                     </td>

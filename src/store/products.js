@@ -1,23 +1,38 @@
 import {observable, computed, action} from 'mobx';
 
+
 class Products {
     @observable items = getProducts();
 
+    @computed get productsMap(){
+        let map = {};
+
+        this.items.forEach((pr, i)=> {
+            map[pr.id.toString()]=i;
+        })
+       // console.log(map);
+        return map;
+        //{'100':0, '101':1.....}
+
+    }
+
+    getById(id){
+        let index = this.productsMap[id];
+
+        if (index === undefined){
+            return null;
+        }
+
+        return this.items[index];
+    }
 }
 
-let instanse = new Cart();
+let instanse = new Products();
 
-let productsMap = {};
- instanse.products.map(productObject => {
-     if (productObject.hasOwnProperty('id')) {
-        productsMap[productObject.id] = {title: productObject.title,   price:  productObject.price};
-     }
- })
 
- 
 
 export default instanse;
-export {productsMap};
+
 
 
 function getProducts() {

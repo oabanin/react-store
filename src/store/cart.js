@@ -1,11 +1,14 @@
 import { observable, computed, action } from 'mobx';
-
+import productsStore from '~s/products';
 
 class Cart {
     @observable products = [{ id: 101, cnt: 2 }]
 
     @computed get total() {
-        return 0; //this.products.reduce((t, pr) => t + pr.price * pr.current, 0)
+        return this.products.reduce((t, pr) => {
+            let product = productsStore.getById(pr.id)
+            return t + product.price * pr.cnt
+        }, 0);
     }
 
     @action change(id, cnt) {
@@ -13,6 +16,10 @@ class Cart {
         if (index !== -1) {
             this.products[index].cnt = cnt;
         }
+    }
+
+    @action add(id) {
+        this.products.push({ id, cnt: 1 });
     }
 
     @action remove(id) {
