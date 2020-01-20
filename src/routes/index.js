@@ -1,7 +1,7 @@
 import Cart from "~p/cart";
 import Order from "~p/order";
 import Result from "~p/result";
-import Home from "~p/home";
+import Products from "~p/products";
 import Page404 from "~p/error404";
 import Post from "~p/post";
 
@@ -9,7 +9,7 @@ let routes = [
     {
         name: "home",
         url: '/',
-        component: Home,
+        component: Products,
         exact: true
     },    
     {
