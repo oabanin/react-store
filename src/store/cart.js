@@ -4,12 +4,23 @@ import productsStore from '~s/products';
 class Cart {
     @observable products = [{ id: 101, cnt: 2 }]
 
+
+
+
+    @computed get productsDetailed() {
+        return this.products.map(pr => {
+            let product = productsStore.getById(pr.id);
+            return {...product, cnt:pr.cnt}
+        })
+    }
+
+
     @computed get total() {
-        return this.products.reduce((t, pr) => {
-            let product = productsStore.getById(pr.id)
-            return t + product.price * pr.cnt
+        return this.productsDetailed.reduce((t, pr) => {
+            return t + pr.price * pr.cnt
         }, 0);
     }
+
 
     @action change(id, cnt) {
         let index = this.products.findIndex((pr) => pr.id === id);
