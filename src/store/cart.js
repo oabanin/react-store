@@ -1,43 +1,44 @@
-import {observable, computed, action} from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 
 class Cart {
-    @observable products = getProducts();
-    
+    @observable products = [{ id: 101, cnt: 2 }]
+
     @computed get total() {
-        return this.products.reduce((t, pr) => t + pr.price * pr.current, 0)
+        return 0; //this.products.reduce((t, pr) => t + pr.price * pr.current, 0)
     }
 
-    @computed get changeOn(){ //return array of 4 functions for React.PureComponent optimization to prevent from unnecessary Re-render
-        return this.products.map((product,i)=>{
-            return (cnt) => this.change(i,cnt);
-        })
+    @action change(id, cnt) {
+        let index = this.products.findIndex((pr) => pr.id === id);
+        if (index !== -1) {
+            this.products[index].cnt = cnt;
+        }
     }
 
-    @action change(i, cnt){
-        this.products[i].current = cnt;
+    @action remove(id) {
+        let index = this.products.findIndex((pr) => pr.id === id);
+        if (index !== -1) {
+            this.products.splice(i, 1);
+        }
+
     }
 
-    @action remove(i){
-        this.products.splice(i,1);
-    }
 
-    
 }
 
 let instanse = new Cart();
 
 let productsMap = {};
- instanse.products.map(productObject => {
-     if (productObject.hasOwnProperty('id')) {
-        productsMap[productObject.id] = {title: productObject.title,   price:  productObject.price};
-     }
- })
+instanse.products.map(productObject => {
+    if (productObject.hasOwnProperty('id')) {
+        productsMap[productObject.id] = { title: productObject.title, price: productObject.price };
+    }
+})
 
- 
+
 
 export default instanse;
-export {productsMap};
+export { productsMap };
 
 
 function getProducts() {

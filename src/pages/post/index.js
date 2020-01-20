@@ -5,19 +5,17 @@ import {productsMap} from '~s/cart.js';
 
 export default  class extends React.Component {
 
-
+goBack = () => {
+    this.props.history.goBack();
+    
+}
     render() {
-        let product = productsMap[this.props.match.params.url];
-        
-        
-        console.log(productsMap[this.props.match.params.url]);
-        
-       
+        let product = productsMap[this.props.match.params.url];   
         return (
             <div>
             <h2>{product.title}</h2>
             Price: {product.price}<br/>
-            
+
             </div>
         );
     }
