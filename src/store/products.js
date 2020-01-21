@@ -10,7 +10,7 @@ class Products {
         this.items.forEach((pr, i)=> {
             map[pr.id.toString()]=i;
         })
-       // console.log(map);
+
         return map;
         //{'100':0, '101':1.....}
 
@@ -28,8 +28,6 @@ class Products {
 }
 
 let instanse = new Products();
-
-
 
 export default instanse;
 
