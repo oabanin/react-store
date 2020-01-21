@@ -4,6 +4,12 @@ import {observable, computed, action} from 'mobx';
 class Products {
     @observable items = getProducts();
 
+
+    constructor(rootStore){
+        this.rootStore = rootStore;
+    }
+
+    
     @computed get productsMap(){
         let map = {};
 

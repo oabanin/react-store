@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {observer} from 'mobx-react'
+import {observer, inject} from 'mobx-react'
 
 import AppMinMax from '~c/inputs/minmax';
-import cartModel from '~s/cart.js';
+//import cartModel from '~s/cart.js';
 
 import {Link} from 'react-router-dom';
 import {routesMap} from '~/routes';
 
 
-
-
-export default @observer class extends React.Component {
+@inject('cart') @observer class Cart extends React.Component {
  
     render() {
+
+        console.log(this.props)
             let productRows = cartModel.productsDetailed.map((product, i) => {
             return (
                 <tr key={product.id}>
@@ -67,3 +67,6 @@ export default @observer class extends React.Component {
 
     }
 }
+
+
+export default Cart;

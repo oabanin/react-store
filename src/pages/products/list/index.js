@@ -7,7 +7,9 @@ import Button from 'react-bootstrap/Button'
 import { urlBuilder } from '~/routes';
 import styles from './index.module.css';
 
-export default class extends React.Component {
+import {observer} from 'mobx-react';
+
+export default @observer class extends React.Component {
 
     render() {
 
@@ -15,7 +17,7 @@ export default class extends React.Component {
             let btn;
 
             if (cart.inCart(pr.id)) {
-
+                btn = <Button variant="danger" onClick={() => cart.remove(pr.id)}>Remove from cart</Button>;
             }
             else {
                 btn = <Button variant="success" onClick={() => cart.add(pr.id)}>Add to cart</Button>;

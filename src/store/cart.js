@@ -1,16 +1,20 @@
 import { observable, computed, action } from 'mobx';
-import productsStore from '~s/products';
+//import productsStore from '~s/products';
 
 class Cart {
     @observable products = []
 
-    // @computed get inCart() {
-    //     return (id) => this.products.some((product) => product.id === id)
-    // }
-
-    inCart(id){
-        return this.products.some((product) => product.id === id)
+    constructor(rootStore){
+        this.rootStore = rootStore;
     }
+
+
+    @computed get inCart() {
+        return (id) => this.products.some((product) => product.id === id)
+    }
+
+
+
 
 
     @computed get productsDetailed() {
@@ -42,7 +46,8 @@ class Cart {
     @action remove(id) {
         let index = this.products.findIndex((pr) => pr.id === id);
         if (index !== -1) {
-            this.products.splice(i, 1);
+            console.log(index);
+            this.products.splice(index, 1);
         }
 
     }

@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './app.module.css';
 
-import { observer } from 'mobx-react'
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { observer, Provider } from 'mobx-react'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import routes, { routesMap } from '~/routes';
+
+import stores from '~s'; 
 
 export default @observer class extends React.Component {
     render() {
@@ -17,33 +19,35 @@ export default @observer class extends React.Component {
         });
 
         return (
-            <Router>
-                header
+            <Provider cart={cart}>
+                <Router>
+                    header
                 <div className="container">
-                <hr/>
-                    <div className="row">
-                        <div className="col col-3">
-                            <ul className="list-group">
-                                <li className="list-group-item">
-                                    <Link to={routesMap.home}>Home</Link>
-                                </li>
-                                <li className="list-group-item">
-                                    <Link to={routesMap.cart}>Cart</Link>
-                                </li>
-                                <li className="list-group-item">
-                                    <Link to={routesMap.order}>Order Now</Link>
-                                </li>
-                            </ul>
+                        <hr />
+                        <div className="row">
+                            <div className="col col-3">
+                                <ul className="list-group">
+                                    <li className="list-group-item">
+                                        <Link to={routesMap.home}>Home</Link>
+                                    </li>
+                                    <li className="list-group-item">
+                                        <Link to={routesMap.cart}>Cart</Link>
+                                    </li>
+                                    <li className="list-group-item">
+                                        <Link to={routesMap.order}>Order Now</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="col col-9">
+                                <Switch>
+                                    {routesComponents}
+                                </Switch>
+                            </div>
                         </div>
-                        <div className="col col-9">
-                            <Switch>
-                                {routesComponents}
-                            </Switch>
-                        </div>
-                    </div>
 
-                </div>
-            </Router>
+                    </div>
+                </Router>
+            </Provider>
         );
     }
 }

@@ -8,6 +8,11 @@ class formData {
         return Object.values(this.formData).every(field => field.valid);
     }
 
+    constructor(rootStore){
+        this.rootStore = rootStore;
+    }
+
+
     @computed get data(){
         let data = {};
         
