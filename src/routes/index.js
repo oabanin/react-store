@@ -48,7 +48,7 @@ let routes = [
 let routesMap = {};
 routes.forEach(route => {
     if (route.hasOwnProperty('name')) {
-        routesMap[route.name] = route.url;
+        routesMap[route.name] = route.url; //{"home": "/", "cart": "/cart", "order": "/checkout"....}
     }
 })
 
@@ -57,7 +57,7 @@ let urlBuilder = function (name, params) {
         return null;
     }
    
-    let url = routesMap[name]; ///news/:url
+    let url = routesMap[name]; //  /products/:id
 
     for (let key in params) {
         url = url.replace(":" + key, params[key]);

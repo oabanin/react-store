@@ -2,15 +2,21 @@ import { observable, computed, action } from 'mobx';
 import productsStore from '~s/products';
 
 class Cart {
-    @observable products = [{ id: 101, cnt: 2 }]
+    @observable products = []
 
+    // @computed get inCart() {
+    //     return (id) => this.products.some((product) => product.id === id)
+    // }
 
+    inCart(id){
+        return this.products.some((product) => product.id === id)
+    }
 
 
     @computed get productsDetailed() {
         return this.products.map(pr => {
             let product = productsStore.getById(pr.id);
-            return {...product, cnt:pr.cnt}
+            return { ...product, cnt: pr.cnt }
         })
     }
 
