@@ -55,19 +55,17 @@ class Cart {
 
 }
 
-let instanse = new Cart();
-
 let productsMap = {};
-instanse.products.map(productObject => {
+new Cart().products.map(productObject => {
     if (productObject.hasOwnProperty('id')) {
         productsMap[productObject.id] = { title: productObject.title, price: productObject.price };
     }
 })
-
-
-
-export default instanse;
 export { productsMap };
+
+
+export default Cart;
+
 
 
 function getProducts() {

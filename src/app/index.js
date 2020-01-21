@@ -19,7 +19,7 @@ export default @observer class extends React.Component {
         });
 
         return (
-            <Provider cart={cart}>
+            <Provider stores={stores}>
                 <Router>
                     header
                 <div className="container">

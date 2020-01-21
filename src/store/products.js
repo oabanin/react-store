@@ -33,9 +33,7 @@ class Products {
     }
 }
 
-let instanse = new Products();
-
-export default instanse;
+export default Products;
 
 
 

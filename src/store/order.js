@@ -30,7 +30,7 @@ class formData {
 
 }
 
-export default new formData();
+export default formData;
 
 
 function getformData() {

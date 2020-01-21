@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 import {routesMap} from '~/routes';
 
 
-@inject('cart') @observer class Cart extends React.Component {
+@inject('stores') @observer class Cart extends React.Component {
  
     render() {
 
