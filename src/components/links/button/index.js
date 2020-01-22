@@ -2,8 +2,13 @@
 import {withRouter} from 'react-router-dom';
 
  function LinkButton (props){
-     console.log(props);
-    return <button {...props} />
+     const {history,
+        location,
+        match,
+        staticContext,
+        to,
+        ...other} = props;
+    return <button {...other} onClick={(e)=>history.push(to)} />
 }
 
 export default withRouter(LinkButton);

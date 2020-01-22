@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import routes, { routesMap } from '~/routes';
 
-import stores from '~s'; 
+import stores from '~s';
 
 export default @observer class extends React.Component {
     render() {
@@ -21,8 +21,10 @@ export default @observer class extends React.Component {
         return (
             <Provider stores={stores}>
                 <Router>
-                    header
-                <div className="container">
+                    
+                    <div className="container">
+                    Number of products in cart: {stores.cart.productsDetailed.length}
+
                         <hr />
                         <div className="row">
                             <div className="col col-3">
