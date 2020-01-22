@@ -23,7 +23,8 @@ export default @inject('stores') @observer class extends React.Component {
             return <ProductItem 
             title={product.title}
             price={product.price}
-            backUrl={routesMap.home} />
+            backUrl={routesMap.home}
+            linkComponent={Link} />
         }
         
     }
