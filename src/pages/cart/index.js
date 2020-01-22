@@ -1,20 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {observer, inject} from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import AppMinMax from '~c/inputs/minmax';
-//import cartModel from '~s/cart.js';
 
-import {Link} from 'react-router-dom';
-import {routesMap} from '~/routes';
+import { Link } from 'react-router-dom';
+import { routesMap } from '~/routes';
 
 
 @inject('stores') @observer class Cart extends React.Component {
- 
-    render() {
 
-        console.log(this.props)
-            let productRows = cartModel.productsDetailed.map((product, i) => {
+    render() {
+        let cartModel = this.props.stores.cart;
+        let productRows = cartModel.productsDetailed.map((product, i) => {
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
@@ -23,7 +20,7 @@ import {routesMap} from '~/routes';
                         min={1}
                         max={product.rest}
                         cnt={product.cnt}
-                        onChange={(cnt)=> cartModel.change(product.id, cnt)} />
+                        onChange={(cnt) => cartModel.change(product.id, cnt)} />
                     </td>
                     <td>{product.price * product.cnt}</td>
                     <td>
@@ -54,7 +51,7 @@ import {routesMap} from '~/routes';
                     </thead>
                     <tbody>
                         {productRows}
-                      
+
                     </tbody>
                 </table>
                 Total - {cartModel.total}

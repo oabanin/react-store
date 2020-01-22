@@ -8,6 +8,7 @@ class Cart {
         this.rootStore = rootStore;
     }
 
+    
 
     @computed get inCart() {
         return (id) => this.products.some((product) => product.id === id)
@@ -19,7 +20,7 @@ class Cart {
 
     @computed get productsDetailed() {
         return this.products.map(pr => {
-            let product = productsStore.getById(pr.id);
+            let product = this.rootStore.products.getById(pr.id);
             return { ...product, cnt: pr.cnt }
         })
     }

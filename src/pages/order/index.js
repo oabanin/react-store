@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react';
 
 import cartModel from '~s/cart.js';
 import formDataModel from '~s/order.js';
@@ -9,15 +9,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {routesMap} from '~/routes';
 
-export default @observer class extends React.Component {
-    /*static propTypes = {
-        formData: PropTypes.object.isRequired,
-        onChange: PropTypes.func.isRequired,
-        onSend: PropTypes.func.isRequired,
-        onBack: PropTypes.func.isRequired
-
-    }
-    */
+export default @inject('stores') @observer class extends React.Component {
 
     state = {
         showModal: false
@@ -34,11 +26,15 @@ export default @observer class extends React.Component {
     confirm = () => {
         this.hide();
         this.props.history.push(routesMap.result);
-        console.log(this.props.history);
+
     }
 
     render() {
   
+        // let productStore = this.props.stores.products;
+        // let cart = this.props.stores.cart;
+        let formDataModel = this.props.stores.order;
+
         let fromFields = [];
 
         for (let name in formDataModel.formData) {

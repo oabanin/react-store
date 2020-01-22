@@ -1,19 +1,20 @@
 import React from 'react';
-import cart from '~s/cart.js';
+
 import { Link } from 'react-router-dom';
-import productsModel from '~s/products.js';
+
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { urlBuilder } from '~/routes';
 import styles from './index.module.css';
 
-import {observer} from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
-export default @observer class extends React.Component {
+export default @inject('stores') @observer class extends React.Component {
 
     render() {
-
-        let productsCards = productsModel.items.map((pr, i) => {
+        let productStore = this.props.stores.products;
+        let cart = this.props.stores.cart;
+        let productsCards = productStore.items.map((pr, i) => {
             let btn;
 
             if (cart.inCart(pr.id)) {
@@ -22,7 +23,7 @@ export default @observer class extends React.Component {
             else {
                 btn = <Button variant="success" onClick={() => cart.add(pr.id)}>Add to cart</Button>;
             }
-            
+
             return <div key={pr.id} className={"col col-4 " + styles.col}>
                 <Card>
                     <Card.Body>
