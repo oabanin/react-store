@@ -1,3 +1,7 @@
 .input {
     width:500px;
 }
+.selected{
+    color: red;
+    font-weight: bold;
+  }
