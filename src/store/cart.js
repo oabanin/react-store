@@ -7,15 +7,11 @@ class Cart {
     constructor(rootStore){
         this.rootStore = rootStore;
     }
-
-    
+   
 
     @computed get inCart() {
         return (id) => this.products.some((product) => product.id === id)
     }
-
-
-
 
 
     @computed get productsDetailed() {

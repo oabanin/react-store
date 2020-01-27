@@ -17,10 +17,12 @@ export default @inject('stores') @observer class extends React.Component {
         let productsCards = productStore.items.map((pr, i) => {
             let btn;
 
+            console.log(typeof pr.id);
             if (cart.inCart(pr.id)) {
                 btn = <Button variant="danger" onClick={() => cart.remove(pr.id)}>Remove from cart</Button>;
             }
             else {
+                
                 btn = <Button variant="success" onClick={() => cart.add(pr.id)}>Add to cart</Button>;
             }
 

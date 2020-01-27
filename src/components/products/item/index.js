@@ -1,6 +1,6 @@
 import React from 'react';
-
 //Передача {link} из react-router-dom єто перебор 
+
 
 export default function(props){
     return (
@@ -11,6 +11,7 @@ export default function(props){
                 Price: {props.price}<br />
             </div>
             <props.linkComponent to={props.backUrl}>back to list</props.linkComponent>
+            {props.btnComponent}
         </div>
     );
 }
