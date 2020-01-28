@@ -40,7 +40,7 @@ class Cart extends React.Component {
 
             <div>
                 <h3>Cart</h3>
-                <table className="border table-bordered">
+                <table className="border table-bordered w-100 text-center">
                     <thead>
                         <tr>
                             <td>Title</td>

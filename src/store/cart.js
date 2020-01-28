@@ -13,6 +13,11 @@ class Cart {
         return (id) => this.products.some((product) => product.id === id)
     }
 
+    @computed get cartCnt() {
+        return this.products.length;
+    }
+
+
 
     @computed get productsDetailed() {
         return this.products.map(pr => {
