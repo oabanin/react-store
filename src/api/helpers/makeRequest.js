@@ -1,6 +1,6 @@
-let baseUrl = '/reactcourseapi/';
+let defaulUrl = '/reactcourseapi/';
 
-export default function makeRequest(url, options = {}, baseUrl = baseUrl){
+export default function makeRequest(url, options = {}, baseUrl = defaulUrl){
     return fetch(baseUrl + url, options).then(response => 
         {
             if(response.status!==200){

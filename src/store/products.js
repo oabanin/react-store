@@ -2,11 +2,12 @@ import {observable, computed, action} from 'mobx';
 
 
 class Products {
-    @observable items = getProducts();
+    @observable items = [];
 
 
     constructor(rootStore){
         this.rootStore = rootStore;
+        this.api =  this.rootStore.api.products;
     }
 
     
@@ -19,6 +20,13 @@ class Products {
 
         return map;
         //{'100':0, '101':1.....}
+
+    }
+
+    @action load(){
+        this.api.all().then(data => {
+            this.items = data;
+        })
 
     }
 
@@ -35,35 +43,3 @@ class Products {
 
 export default Products;
 
-
-
-function getProducts() {
-    return [
-        {
-            id: 100,
-            title: "Iphone",
-            price: 1,
-            rest: 20
-        },
-        {
-            id: 101,
-            title: "Samsung",
-            price: 10,
-            rest: 13
-        },
-        {
-            id: 102,
-            title: "Nokia",
-            price: 100,
-            rest: 8
-        },
-        {
-            id: 103,
-            title: "Huawei",
-            price: 1000,
-            rest: 8
-        }
-
-
-    ]
-}
