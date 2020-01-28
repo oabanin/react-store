@@ -75,7 +75,15 @@ let conf = {
     }
   },
   devServer: {
-  	historyApiFallback: true
+  	historyApiFallback: true,
+  	overlay: true,
+  	proxy: {
+  		'/reactcourseapi/**':{
+  			target: 'http://localhost',
+  			secure: false,
+  			changeOrigin: true
+  		}
+  	}
   }
 }
 

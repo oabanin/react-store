@@ -1,6 +1,9 @@
+
+
 import cartStore from "./cart";
 import productsStore from "./products";
 import orderStore from "./order";
+
 
 class RootStore{
     constructor(){
