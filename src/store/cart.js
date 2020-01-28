@@ -2,7 +2,7 @@ import { observable, computed, action } from 'mobx';
 //import productsStore from '~s/products';
 
 class Cart {
-    @observable products = []
+    @observable products = [{id:100, cnt:1}]
 
     constructor(rootStore){
         this.rootStore = rootStore;
