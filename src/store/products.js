@@ -33,9 +33,10 @@ class Products {
         return new Promise((resolve, reject) => {
             this.api.all().then(data => {
                 this.items = data;
-            });
-            resolve(true);
-        }
+                resolve(true)});
+            
+            
+        });
 
     }
 
