@@ -5,11 +5,12 @@ import productsStore from "./products";
 import orderStore from "./order";
 
 import * as products from '~/api/products';
+import * as cart from '~/api/cart';
 
 class RootStore{
     constructor(){
         this.api = {
-            products
+            products, cart
         }
         this.cart = new cartStore(this);
         this.products = new productsStore(this);

@@ -6,6 +6,7 @@ class Cart {
 
     constructor(rootStore){
         this.rootStore = rootStore;
+        console.log(this.rootStore.api);
     }
    
 
