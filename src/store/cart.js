@@ -2,13 +2,16 @@ import { observable, computed, action } from 'mobx';
 //import productsStore from '~s/products';
 
 class Cart {
-    @observable products = [{id:100, cnt:1}]
+    @observable products = [];
 
-    constructor(rootStore){
+    constructor(rootStore) {
         this.rootStore = rootStore;
-        console.log(this.rootStore.api);
+        this.api = this.rootStore.apiApp.cartApi;
+        this.storage = this.rootStore.storage;
+        this.token = this.storage.getItem('cartToken');
+
     }
-   
+
 
     @computed get inCart() {
         return (id) => this.products.some((product) => product.id === id)
@@ -55,53 +58,21 @@ class Cart {
 
     }
 
+    @action load() {
+        this.api.load(this.token).then(data => {
+            this.products = data.cart;
+
+            console.log(data);
+            if (data.needUpdate === true) {
+                this.token = data.token;
+                this.storage.setItem('cartToken', this.token);
+            }
+        });
+    }
+
 
 }
-
-let productsMap = {};
-new Cart().products.map(productObject => {
-    if (productObject.hasOwnProperty('id')) {
-        productsMap[productObject.id] = { title: productObject.title, price: productObject.price };
-    }
-})
-export { productsMap };
-
 
 export default Cart;
 
 
-
-function getProducts() {
-    return [
-        {
-            id: 100,
-            title: "Iphone",
-            price: 1,
-            rest: 20,
-            current: 1
-        },
-        {
-            id: 101,
-            title: "Samsung",
-            price: 10,
-            rest: 13,
-            current: 1
-        },
-        {
-            id: 102,
-            title: "Nokia",
-            price: 100,
-            rest: 8,
-            current: 1
-        },
-        {
-            id: 103,
-            title: "Huawei",
-            price: 1000,
-            rest: 8,
-            current: 1
-        }
-
-
-    ]
-}

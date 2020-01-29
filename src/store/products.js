@@ -7,7 +7,8 @@ class Products {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
-        this.api = this.rootStore.api.products;
+        this.api = this.rootStore.apiApp.products;
+        
     }
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './app.module.css';
 import withStore from '~/hocs/withStore';
 
+
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
 
@@ -12,6 +13,8 @@ class App extends React.Component {
 
 
     render() {
+
+
         let routesComponents = routes.map(route => {
             return <Route
                 path={route.url}
