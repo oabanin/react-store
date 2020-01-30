@@ -41,7 +41,9 @@ class Cart {
     @action change(id, cnt) {
         let index = this.products.findIndex((pr) => pr.id === id);
         if (index !== -1) {
-            this.products[index].cnt = cnt;
+            this.api.change(this.token, id, cnt).then(res => {
+                this.products[index].cnt = cnt;
+            });
         }
     }
 
@@ -66,12 +68,20 @@ class Cart {
     @action load() {
         this.api.load(this.token).then(data => {
             this.products = data.cart;
-
             if (data.needUpdate === true) {
                 this.token = data.token;
                 this.storage.setItem('cartToken', this.token);
             }
         });
+    }
+
+
+    @action clean() {
+        this.api.clean(this.token).then(res => {
+            this.products = [];
+        });
+
+
     }
 
 

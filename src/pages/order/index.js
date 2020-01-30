@@ -24,8 +24,9 @@ export default @inject('stores') @observer class extends React.Component {
     }
 
     confirm = () => {
+        console.log(this.props.stores.cart.clean());
         this.hide();
-        this.props.history.push(routesMap.result);
+        //this.props.history.push(routesMap.result);
 
     }
 

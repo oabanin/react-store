@@ -18,4 +18,12 @@ function remove(token, id) {
     return makeRequest(`cart/remove.php?token=${token}&id=${id}`);
 }
 
-export { load, add, remove };
+function change(token, id, cnt) {
+    return makeRequest(`cart/change.php?token=${token}&id=${id}&cnt=${cnt}`);
+}
+
+function clean(token) {
+    return makeRequest(`cart/clean.php?token=${token}`);
+}
+
+export { load, add, remove, change, clean};
