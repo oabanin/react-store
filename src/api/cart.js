@@ -9,8 +9,13 @@ function load(token) {
 }
 
 function add(token, id) {
-    console.log(`cart/add.php?token=${token}&id=${id}`);
+
     return makeRequest(`cart/add.php?token=${token}&id=${id}`);
 }
 
-export { load, add };
+
+function remove(token, id) {
+    return makeRequest(`cart/remove.php?token=${token}&id=${id}`);
+}
+
+export { load, add, remove };

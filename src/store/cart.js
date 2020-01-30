@@ -50,16 +50,15 @@ class Cart {
             if (res) {
                 this.products.push({ id, cnt: 1 });
             }
-
         });
-
     }
 
     @action remove(id) {
         let index = this.products.findIndex((pr) => pr.id === id);
         if (index !== -1) {
-            console.log(index);
-            this.products.splice(index, 1);
+            this.api.remove(this.token, id).then(res => {
+                this.products.splice(index, 1);
+            });
         }
 
     }

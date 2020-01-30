@@ -24,11 +24,14 @@ export default @observer class extends React.PureComponent {
     lazyInput = React.createRef();
 
     increase = () => {
+        console.log(this.lazyInput);
         this.set(this.props.cnt + 1);
         this.lazyInput.current.setValue(this.set(isNaN(this.props.cnt + 1) ? this.props.min : this.props.cnt + 1));
     }
 
     decrease = () => {
+
+        
         this.set(this.props.cnt - 1);
         this.lazyInput.current.setValue(this.set(isNaN(this.props.cnt - 1) ? this.props.min : this.props.cnt - 1));
     }
