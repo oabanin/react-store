@@ -46,7 +46,13 @@ class Cart {
     }
 
     @action add(id) {
-        this.products.push({ id, cnt: 1 });
+        this.api.add(this.token, id).then(res => {
+            if (res) {
+                this.products.push({ id, cnt: 1 });
+            }
+
+        });
+
     }
 
     @action remove(id) {
@@ -62,7 +68,6 @@ class Cart {
         this.api.load(this.token).then(data => {
             this.products = data.cart;
 
-            console.log(data);
             if (data.needUpdate === true) {
                 this.token = data.token;
                 this.storage.setItem('cartToken', this.token);

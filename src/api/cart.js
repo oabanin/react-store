@@ -1,11 +1,16 @@
 import makeRequest from './helpers/makeRequest';
 
-function load(token){
+function load(token) {
     let url = 'cart/load.php';
-    if(token !== null){
+    if (token !== null) {
         url += `?token=${token}`;
     }
     return makeRequest(url);
 }
 
-export {load};
+function add(token, id) {
+    console.log(`cart/add.php?token=${token}&id=${id}`);
+    return makeRequest(`cart/add.php?token=${token}&id=${id}`);
+}
+
+export { load, add };
