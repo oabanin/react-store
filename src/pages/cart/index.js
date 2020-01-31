@@ -9,7 +9,7 @@ import withStore from '~/hocs/withStore';
 import LinkButton from '~c/links/button';
 
 class Cart extends React.Component {
-
+    
     render() {
         let cartModel = this.props.stores.cart;
         let productRows = cartModel.productsDetailed.map((product, i) => {

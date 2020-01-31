@@ -1,33 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react'
 
-import cartModel from '~s/cart.js';
-import formDataModel from '~s/order.js';
 
-import { Link } from 'react-router-dom';
-import { urlBuilder } from '~/routes';
 
-export default @observer class extends React.Component {
+
+import withStore from '~/hocs/withStore';
+
+ class Result extends React.Component {
+    
     render() {
-        let postsTmp = [1, 2, 3];
-        let links = postsTmp.map((post, index) => {
-            return <div key={index}>
-                <Link to={urlBuilder('blogPost', { url: post })}>Post {post}</Link>
-            </div>
-        })
-
+        let cartModel = this.props.stores.cart;
+        let formDataModel = this.props.stores.order;
+        
+        let lastOrderCache = this.props.stores.order.lastOrderCache;
         return (<div>
             <h2>Congratultaions</h2>
-            Hi, {formDataModel.data.name},
-            Total: {cartModel.total}
-            {links}
+            Hi, {lastOrderCache.name},
+            Total: {lastOrderCache.total}
+  
         </div >
         );
 
     }
-
-
-
-
 }
+
+export default withStore(Result);

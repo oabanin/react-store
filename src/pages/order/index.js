@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
 import cartModel from '~s/cart.js';
-import formDataModel from '~s/order.js';
+//import formDataModel from '~s/order.js';
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import {Link} from 'react-router-dom';
@@ -24,9 +24,9 @@ export default @inject('stores') @observer class extends React.Component {
     }
 
     confirm = () => {
-        console.log(this.props.stores.cart.clean());
+        this.props.stores.order.send();
         this.hide();
-        //this.props.history.push(routesMap.result);
+        this.props.history.push(routesMap.result);
 
     }
 

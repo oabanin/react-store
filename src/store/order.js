@@ -8,15 +8,15 @@ class formData {
         return Object.values(this.formData).every(field => field.valid);
     }
 
-    constructor(rootStore){
+    constructor(rootStore) {
         this.rootStore = rootStore;
     }
 
 
-    @computed get data(){
+    @computed get data() {
         let data = {};
-        
-        for(let arrayname in this.formData){
+
+        for (let arrayname in this.formData) {
             data[arrayname] = this.formData[arrayname].value;
         }
         return data;
@@ -28,9 +28,58 @@ class formData {
         field.valid = field.validator(newValue);
     }
 
+    @action send() {
+        this.lastOrderCache.total = this.rootStore.cart.total;
+        for (let key in this.formData) {
+            this.lastOrderCache[key] = this.formData[key].value;
+
+        }
+        //api request;
+        //this.props.stores.order.send();
+        this.rootStore.cart.clean();
+
+    }
+
+    @observable lastOrderCache = {
+        name: '',
+        email: '',
+        phone: '',
+        total: '',
+
+
+
+    }
+
 }
 
 export default formData;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function getformData() {
@@ -41,7 +90,7 @@ function getformData() {
             validator: value => /^[a-zA-Z ]{2,}$/.test(value),
             errorText: "Latin symbols length of 2 or more",
             valid: null
-            }
+        }
         ,
         email: {
             label: "Email",
