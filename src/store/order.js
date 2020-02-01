@@ -29,16 +29,19 @@ class formData {
     }
 
     @action send() {
-        this.lastOrderCache.total = this.rootStore.cart.total;
-        for (let key in this.formData) {
-            this.lastOrderCache[key] = this.formData[key].value;
+        return new Promise((resolve, reject) => {
+            this.lastOrderCache.total = this.rootStore.cart.total;
+            for (let key in this.formData) {
+                this.lastOrderCache[key] = this.formData[key].value;
 
-        }
-        //api request;
-        //this.props.stores.order.send();
-        this.rootStore.cart.clean();
+            }
+            //api request;
 
+            this.rootStore.cart.clean().then(() => resolve());
+        });
+        
     }
+
 
     @observable lastOrderCache = {
         name: '',

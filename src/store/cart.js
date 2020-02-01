@@ -1,4 +1,5 @@
 import { observable, computed, action } from 'mobx';
+
 //import productsStore from '~s/products';
 
 class Cart {
@@ -77,8 +78,17 @@ class Cart {
 
 
     @action clean() {
-        this.api.clean(this.token).then(res => {
-            this.products = [];
+        return new Promise((resolve, reject) => {
+            this.api.clean(this.token).then(res => {
+                if (res) {
+                    this.products = [];
+                    resolve(true);
+                }
+                else {
+                    reject();
+                }
+
+            });
         });
 
 
