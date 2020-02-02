@@ -4,6 +4,18 @@ import { observable, computed, action } from 'mobx';
 
 class Cart {
     @observable products = [];
+    @observable processId = {};
+
+    @computed get inProcess(){
+        
+        // return (id) => {
+        //     console.log(this.processId);
+        //     console.log(Object.keys(this.processId));
+        //     return this.processId.hasOwnProperty(id);
+        // } 
+        return (id) => id in this.processId;
+        //return (id) => this.processId.hasOwnProperty(id);
+    }
 
     constructor(rootStore) {
         this.rootStore = rootStore;
@@ -49,9 +61,11 @@ class Cart {
     }
 
     @action add(id) {
+        this.processId[id]  = true ;
         this.api.add(this.token, id).then(res => {
             if (res) {
                 this.products.push({ id, cnt: 1 });
+                delete this.processId[id];
             }
         });
     }

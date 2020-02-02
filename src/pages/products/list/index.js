@@ -23,7 +23,9 @@ export default @inject('stores') @observer class extends React.Component {
             }
             else {
                 
-                btn = <Button variant="success" onClick={() => cart.add(pr.id)}>Add to cart</Button>;
+                btn = <Button variant="success" 
+                disabled={cart.inProcess(pr.id) ? true : false}
+                onClick={() => cart.add(pr.id)}>Add to cart</Button>;
             }
 
             return <div key={pr.id} className={"col col-4 " + styles.col}>
