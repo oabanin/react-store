@@ -19,7 +19,9 @@ export default @inject('stores') @observer class extends React.Component {
 
 
             if (cart.inCart(pr.id)) {
-                btn = <Button variant="danger" onClick={() => cart.remove(pr.id)}>Remove from cart</Button>;
+                btn = <Button variant="danger" 
+                disabled={pr.id in cart.processId} 
+                onClick={() => cart.remove(pr.id)}>Remove from cart</Button>;
             }
             else {
                 

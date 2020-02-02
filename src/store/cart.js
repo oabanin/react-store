@@ -6,15 +6,15 @@ class Cart {
     @observable products = [];
     @observable processId = {};
 
-    @computed get inProcess(){
-        
-        // return (id) => {
+    @computed get inProcess() {
+
+        // return (id) => {             //WORKS
         //     console.log(this.processId);
         //     console.log(Object.keys(this.processId));
         //     return this.processId.hasOwnProperty(id);
         // } 
-        return (id) => id in this.processId;
-        //return (id) => this.processId.hasOwnProperty(id);
+        return (id) => id in this.processId;        //WORKS
+        //return (id) => this.processId.hasOwnProperty(id); //DOES NOT WORK
     }
 
     constructor(rootStore) {
@@ -61,13 +61,17 @@ class Cart {
     }
 
     @action add(id) {
-        this.processId[id]  = true ;
-        this.api.add(this.token, id).then(res => {
-            if (res) {
-                this.products.push({ id, cnt: 1 });
-                delete this.processId[id];
-            }
-        });
+        if (!(this.inCart(id) || id in this.processId)) {
+
+
+            this.processId[id] = true;
+            this.api.add(this.token, id).then(res => {
+                if (res) {
+                    this.products.push({ id, cnt: 1 });
+                    delete this.processId[id];
+                }
+            });
+        }
     }
 
     @action remove(id) {
