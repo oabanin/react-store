@@ -24,7 +24,7 @@ export default @inject('stores') @observer class extends React.Component {
             else {
                 
                 btn = <Button variant="success" 
-                disabled={cart.inProcess(pr.id) ? true : false}
+                disabled={pr.id in cart.processId}
                 onClick={() => cart.add(pr.id)}>Add to cart</Button>;
             }
 
