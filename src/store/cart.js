@@ -62,8 +62,6 @@ class Cart {
 
     @action add(id) {
         if (!(this.inCart(id) || id in this.processId)) {
-
-
             this.processId[id] = true;
             this.api.add(this.token, id).then(res => {
                 if (res) {
@@ -75,13 +73,17 @@ class Cart {
     }
 
     @action remove(id) {
-        let index = this.products.findIndex((pr) => pr.id === id);
-        if (index !== -1) {
-            this.api.remove(this.token, id).then(res => {
-                this.products.splice(index, 1);
-            });
-        }
+        if (this.inCart(id) && !(id in this.processId)) {
 
+            let index = this.products.findIndex((pr) => pr.id === id);
+            if (index !== -1) {
+                this.processId[id] = true;
+                this.api.remove(this.token, id).then(res => {
+                    this.products.splice(index, 1);
+                    delete this.processId[id];
+                });
+            }
+        }
     }
 
     @action load() {
