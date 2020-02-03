@@ -1,4 +1,4 @@
-import { observable, computed, action } from 'mobx';
+import { observable, computed, action, runInAction } from 'mobx';
 
 //import productsStore from '~s/products';
 
@@ -68,23 +68,27 @@ class Cart {
         if (!(this.inCart(id) || id in this.processId)) {
             this.processId[id] = true;
             this.api.add(this.token, id).then(res => {
-                if (res) {
-                    this.products.push({ id, cnt: 1 });
-                    delete this.processId[id];
-                }
+                runInAction(() => {
+
+                    if (res) {
+                        this.products.push({ id, cnt: 1 });
+                        delete this.processId[id];
+                    }
+                });
             });
         }
     }
 
     @action remove(id) {
         if (this.inCart(id) && !(id in this.processId)) {
-
             let index = this.products.findIndex((pr) => pr.id === id);
             if (index !== -1) {
                 this.processId[id] = true;
                 this.api.remove(this.token, id).then(res => {
-                    this.products.splice(index, 1);
-                    delete this.processId[id];
+                    runInAction(() => {
+                        this.products.splice(index, 1);
+                        delete this.processId[id];
+                    });
                 });
             }
         }
@@ -92,11 +96,13 @@ class Cart {
 
     @action load() {
         this.api.load(this.token).then(data => {
-            this.products = data.cart;
-            if (data.needUpdate === true) {
-                this.token = data.token;
-                this.storage.setItem('cartToken', this.token);
-            }
+            runInAction(() => {
+                this.products = data.cart;
+                if (data.needUpdate === true) {
+                    this.token = data.token;
+                    this.storage.setItem('cartToken', this.token);
+                }
+            })
         });
     }
 
