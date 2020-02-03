@@ -52,11 +52,15 @@ class Cart {
 
 
     @action change(id, cnt) {
-        let index = this.products.findIndex((pr) => pr.id === id);
-        if (index !== -1) {
-            this.api.change(this.token, id, cnt).then(res => {
-                this.products[index].cnt = cnt;
-            });
+        if (!(id in this.processId)) {
+            let index = this.products.findIndex((pr) => pr.id === id);
+            if (index !== -1) {
+                this.processId[id] = true;
+                this.api.change(this.token, id, cnt).then(res => {
+                    this.products[index].cnt = cnt;
+                    delete this.processId[id];
+                });
+            }
         }
     }
 

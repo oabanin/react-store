@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import AppLazyInput from '../lazy';
 import styles from './minmax.module.css';
 
-import {observer} from 'mobx-react';
+import { observer } from 'mobx-react';
 
 export default @observer class extends React.PureComponent {
 
-    
+
 
     static defaultProps = {
         onChange: function (cnt) {
@@ -18,7 +18,8 @@ export default @observer class extends React.PureComponent {
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired,
         cnt: PropTypes.number.isRequired,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+        disabled: PropTypes.bool
     }
 
     lazyInput = React.createRef();
@@ -31,7 +32,7 @@ export default @observer class extends React.PureComponent {
 
     decrease = () => {
 
-        
+
         this.set(this.props.cnt - 1);
         this.lazyInput.current.setValue(this.set(isNaN(this.props.cnt - 1) ? this.props.min : this.props.cnt - 1));
     }
@@ -40,14 +41,14 @@ export default @observer class extends React.PureComponent {
         let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
         this.props.onChange(cnt);
         return cnt;
-        
+
     }
 
 
     onChange = (e) => {
         let cnt = parseInt(e.target.value);
         let realCnt = this.set(isNaN(cnt) ? this.props.min : cnt);
-        if(realCnt.toString() !== e.target.value){
+        if (realCnt.toString() !== e.target.value) {
             console.log('HARD SET VALUE');
             this.lazyInput.current.setValue(realCnt);
         }
@@ -56,18 +57,20 @@ export default @observer class extends React.PureComponent {
 
 
     render() {
-        console.log("minmax render");
+
         return (
-            
-            <div style={{color: 'red'}}>
-             
-                <button onClick={this.decrease}>-</button>
+
+            <div style={{ color: 'red' }}>
+
+                <button disabled={this.props.disabled || this.props.cnt <= this.props.min}
+                    onClick={this.decrease}>-</button>
                 <AppLazyInput
                     value={this.props.cnt}
                     onChange={this.onChange}
-                    nativeProps={{ className: styles.input  }}
+                    nativeProps={{ type: 'text', disabled: this.props.disabled, className: styles.input }}
                     ref={this.lazyInput} />
-                <button onClick={this.increase}>+</button>
+                <button disabled={this.props.disabled || this.props.cnt >= this.props.max}
+                 onClick={this.increase}>+</button>
             </div>
         );
     }

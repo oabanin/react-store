@@ -21,11 +21,14 @@ class Cart extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.cnt}
-                        onChange={(cnt) => cartModel.change(product.id, cnt)} />
+                        onChange={(cnt) => cartModel.change(product.id, cnt)}
+                        disabled={product.id in cartModel.processId}
+                        />
                     </td>
                     <td>{product.price * product.cnt}</td>
                     <td>
-                        <button onClick={(e) => cartModel.remove(product.id)}>
+                        <button disabled={product.id in cartModel.processId}
+                         onClick={(e) => cartModel.remove(product.id)}>
                             X
                         </button>
                     </td>
