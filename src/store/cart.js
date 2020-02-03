@@ -75,6 +75,8 @@ class Cart {
                         delete this.processId[id];
                     }
                 });
+            }).catch(()=>{
+                this.rootStore.notifications.add(`Can't add item`);
             });
         }
     }
@@ -103,7 +105,9 @@ class Cart {
                     this.storage.setItem('cartToken', this.token);
                 }
             })
-        });
+        }).catch(()=> {
+            //Error
+        })
     }
 
 

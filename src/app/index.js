@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './app.module.css';
 import withStore from '~/hocs/withStore';
-
+import Notifications from '~p/notifications';
 
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
@@ -25,6 +25,7 @@ class App extends React.Component {
         let cart = this.props.stores.cart;
         return (
             <Router>
+                <Notifications/>
                 <header>
                     <div className="container">
                         <hr />

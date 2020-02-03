@@ -3,6 +3,7 @@ import { configure } from 'mobx';
 import cartStore from "./cart";
 import productsStore from "./products";
 import orderStore from "./order";
+import notificationStore from './notifications';
 
 import * as cartApi from '~/api/cart';
 import * as products from '~/api/products';
@@ -20,6 +21,7 @@ class RootStore {
         this.cart = new cartStore(this);
         this.products = new productsStore(this);
         this.order = new orderStore(this);
+        this.notifications = new notificationStore(this);
     }
 }
 

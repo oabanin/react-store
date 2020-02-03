@@ -10,7 +10,7 @@ function load(token) {
 
 function add(token, id) {
 
-    return makeRequest(`cart/add.php?token=${token}&id=${id}`);
+    return makeRequest(`cart/aadd.php?token=${token}&id=${id}`);
 }
 
 

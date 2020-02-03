@@ -13,6 +13,8 @@ stores.products.load().then(() => {
         <Provider stores={stores}>
             <App  />
         </Provider>, document.querySelector("#app"))
+
+
 });
 
 stores.cart.load();
