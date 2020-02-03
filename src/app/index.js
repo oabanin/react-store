@@ -49,7 +49,7 @@ class App extends React.Component {
                     <div className="row">
                         <div className="col col-3">
                             <ul className="list-group">
-                                <li className="list-group-item">
+                                <li className={`list-group-item ${styles.myItem}`}>
                                     <NavLink activeClassName={styles.selected} to={routesMap.home} exact>Home</NavLink >
                                 </li>
                                 <li className="list-group-item">
