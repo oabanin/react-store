@@ -3,10 +3,10 @@ import styles from './app.module.css';
 import routes from '~/routes';
 
 
-import { observer } from 'mobx-react'
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-export default @observer class extends React.Component {
+export default class extends React.Component {
     render() {
         let routesComponents = routes.map(route => {
             return <Route

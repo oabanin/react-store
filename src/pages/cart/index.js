@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {observer} from 'mobx-react'
 
 import AppMinMax from '~c/inputs/minmax';
-import cartModel from '~s/cart.js';
+
 
 import {Link} from 'react-router-dom';
 import {routesMap} from '~/routes';
@@ -11,30 +10,30 @@ import {routesMap} from '~/routes';
 
 
 
-export default @observer class extends React.Component {
+export default  class extends React.Component {
  
     render() {
-            let productRows = cartModel.products.map((product, i) => {
-            return (
-                <tr key={product.id}>
-                    <td>{product.title}</td>
-                    <td>{product.price}</td>
-                    <td><AppMinMax
-                        min={1}
-                        max={product.rest}
-                        cnt={product.current}
-                        onChange={cartModel.changeOn[i]} />
-                    </td>
-                    <td>{product.price * product.current}</td>
-                    <td>
-                        <button onClick={(e) => cartModel.remove(i)}>
-                            X
-                        </button>
-                    </td>
+        //     let productRows = [].products.map((product, i) => {
+        //     return (
+        //         <tr key={product.id}>
+        //             <td>{product.title}</td>
+        //             <td>{product.price}</td>
+        //             <td><AppMinMax
+        //                 min={1}
+        //                 max={product.rest}
+        //                 cnt={product.current}
+        //                 onChange={[].changeOn[i]} />
+        //             </td>
+        //             <td>{product.price * product.current}</td>
+        //             <td>
+        //                 <button onClick={(e) => [].remove(i)}>
+        //                     X
+        //                 </button>
+        //             </td>
 
-                </tr>
-            )
-        });
+        //         </tr>
+        //     )
+        // });
 
 
 
@@ -53,11 +52,11 @@ export default @observer class extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {productRows}
+                        
                       
                     </tbody>
                 </table>
-                Total - {cartModel.total}
+                Total - {2}
                 <hr />
                 <button className="btn btn-primary">NExt PAge</button>
                 <Link className="btn btn-primary" to={routesMap.order}>Send</Link>
