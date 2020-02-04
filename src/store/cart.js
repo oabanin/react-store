@@ -72,12 +72,17 @@ class Cart {
 
                     if (res) {
                         this.products.push({ id, cnt: 1 });
-                        delete this.processId[id];
+
                     }
                 });
-            }).catch(()=>{
+            }).catch(() => {
                 this.rootStore.notifications.add(`Can't add item`);
-            });
+            }).finally(runInAction(()=>{
+                delete this.processId[id];
+            }));
+                
+                
+                
         }
     }
 
@@ -105,7 +110,7 @@ class Cart {
                     this.storage.setItem('cartToken', this.token);
                 }
             })
-        }).catch(()=> {
+        }).catch(() => {
             //Error
         })
     }
