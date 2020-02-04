@@ -2,26 +2,32 @@ let initialState = {
     products = getProducts()
 }
 
+
+function cart_remove(state, i){
+    let products = state.products.filter((el, index) => index !== i);
+    return {
+        ...state,
+        products
+    }
+}
+
+function cart_change_cnt(state, i, cnt){
+    let products = [...state.products];
+    products[i] = {...products[i], current: cnt}
+    return {
+        ...state,
+        products
+    }
+}
+
 const reducer = function (state = initialState, action) {
     switch (action.type) {
-        case: 'CART_REMOVE':
-            let products = state.products.filter((el, index) => index !== action.i);
-            return {
-                ...state,
-                products
-            }
+        case 'CART_REMOVE':
+            return cart_remove(state, action.i);
             break;
-        case: 'CART_CHANGE_CNY':
-            let products = [...state.products];
-            products[action.i] = {...products[action.i], current: action.cnt}
-            
-            return {
-                ...state,
-                products
-            }
+        case 'CART_CHANGE_CNT':         
+            return cart_change_cnt(state, action.i, action.cnt)
             break;
-
-
     }
     return state;
 
