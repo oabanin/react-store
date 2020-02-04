@@ -9,7 +9,7 @@
 
 .item{
     margin: 0 0 10px 0;
-    background: #444;
+    background: rgb(248, 203, 2);
     color: #fff;
     border: 1px solid #fff;
     border-radius: 20px;
@@ -21,11 +21,11 @@
 }
 
 .itemEnterActive{
-    transition: opacity 0.5s;
+    transition: opacity .9s;
     opacity: 1;
 }
 
 .itemLeaveActive{
-    transition: opacity 0.5s;
+    transition: opacity 1s;
     opacity: 0;
 }
