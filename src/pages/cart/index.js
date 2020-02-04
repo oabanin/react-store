@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppMinMax from '~c/inputs/minmax';
-import cartModel from '~s/cart.js';
-import router from '~s/router.js'
 import {observer} from 'mobx-react'
 
-export default @observer class extends React.Component {
+import AppMinMax from '~c/inputs/minmax';
+import cartModel from '~s/cart.js';
 
+import {Link} from 'react-router-dom';
+import {routesMap} from '~/routes';
+
+
+
+
+export default @observer class extends React.Component {
+ 
     render() {
-        let productRows = cartModel.products.map((product, i) => {
+            let productRows = cartModel.products.map((product, i) => {
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
@@ -17,7 +23,7 @@ export default @observer class extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.current}
-                        onChange={(cnt) => { cartModel.change(i, cnt) }} />
+                        onChange={cartModel.changeOn[i]} />
                     </td>
                     <td>{product.price * product.current}</td>
                     <td>
@@ -53,7 +59,8 @@ export default @observer class extends React.Component {
                 </table>
                 Total - {cartModel.total}
                 <hr />
-                <button className="btn btn-primary" onClick={() => router.moveTo('order')}>NExt PAge</button>
+                <button className="btn btn-primary">NExt PAge</button>
+                <Link className="btn btn-primary" to={routesMap.order}>Send</Link>
             </div>
         );
 
