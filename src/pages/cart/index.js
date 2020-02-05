@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 import { routesMap } from '~/routes';
-
+import actions from '~s/actions';
 
 
 
@@ -78,15 +78,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        onRemove: (i) => dispatch({
-            type: "CART_REMOVE",
-            i
-        }),
-        onChange: (i,cnt) => dispatch({
-            type: "CART_CHANGE_CNT",
-            i,
-            cnt
-        })
+        onRemove: (i) => dispatch(actions.cart.remove(i)),
+        onChange: (i,cnt) => dispatch(actions.cart.changeCnt(i,cnt))
     }
 }
 
