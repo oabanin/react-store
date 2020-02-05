@@ -25,11 +25,11 @@ class Cart extends React.Component {
                         min={1}
                         max={product.rest}
                         cnt={product.current}
-                        onChange={() => { }} />
+                        onChangeFromCart={(cnt) => this.props.onChange(i, cnt)} />
                     </td>
                     <td>{product.price * product.current}</td>
                     <td>
-                        <button onClick={() => { }}>
+                        <button onClick={() => this.props.onRemove(i)}>
                             X
                         </button>
                     </td>
@@ -78,7 +78,15 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-
+        onRemove: (i) => dispatch({
+            type: "CART_REMOVE",
+            i
+        }),
+        onChange: (i,cnt) => dispatch({
+            type: "CART_CHANGE_CNT",
+            i,
+            cnt
+        })
     }
 }
 

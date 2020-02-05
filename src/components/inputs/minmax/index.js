@@ -10,7 +10,7 @@ export default @observer class extends React.PureComponent {
     
 
     static defaultProps = {
-        onChange: function (cnt) {
+        onChangeFromCart: function (cnt) {
         }
     }
 
@@ -18,7 +18,7 @@ export default @observer class extends React.PureComponent {
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired,
         cnt: PropTypes.number.isRequired,
-        onChange: PropTypes.func
+        onChangeFromCart: PropTypes.func
     }
 
     lazyInput = React.createRef();
@@ -35,13 +35,13 @@ export default @observer class extends React.PureComponent {
 
     set(newCnt) {
         let cnt = Math.max(this.props.min, Math.min(newCnt, this.props.max));
-        this.props.onChange(cnt);
+        this.props.onChangeFromCart(cnt);
         return cnt;
         
     }
 
 
-    onChange = (e) => {
+    onChangeNATIVE = (e) => {
         let cnt = parseInt(e.target.value);
         let realCnt = this.set(isNaN(cnt) ? this.props.min : cnt);
         if(realCnt.toString() !== e.target.value){
@@ -61,7 +61,7 @@ export default @observer class extends React.PureComponent {
                 <button onClick={this.decrease}>-</button>
                 <AppLazyInput
                     value={this.props.cnt}
-                    onChange={this.onChange}
+                    onChangeToLazyInput={this.onChangeNATIVE}
                     nativeProps={{ className: styles.input  }}
                     ref={this.lazyInput} />
                 <button onClick={this.increase}>+</button>

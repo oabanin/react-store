@@ -14,12 +14,12 @@ export default class extends React.Component {
     }
 
     static defaultProps = {
-        onChange: function (cnt) { },
+        onChangeToLazyInput: function (cnt) { },
         nativeProps: {}
     }
 
     static propTypes = {
-        onChange: PropTypes.func,
+        onChangeToLazyInput: PropTypes.func,
         nativeProps: PropTypes.object,
         value: PropTypes.any.isRequired,
     }
@@ -42,7 +42,7 @@ export default class extends React.Component {
 
     checkChange = (e) => {
         if (e.target.value.toString() !== this.props.value) {
-            this.props.onChange(e);
+            this.props.onChangeToLazyInput(e);
         }
     }
 
