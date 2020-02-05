@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { observer } from 'mobx-react'
 
-import cartModel from '~s/cart.js';
-import formDataModel from '~s/order.js';
+
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import {Link} from 'react-router-dom';
 import {routesMap} from '~/routes';
 
-export default @observer class extends React.Component {
+export default class extends React.Component {
     /*static propTypes = {
         formData: PropTypes.object.isRequired,
         onChange: PropTypes.func.isRequired,

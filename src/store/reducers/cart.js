@@ -1,5 +1,5 @@
 let initialState = {
-    products = getProducts()
+    products : getProducts()
 }
 
 

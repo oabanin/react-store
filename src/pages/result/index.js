@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { observer } from 'mobx-react'
 
-import cartModel from '~s/cart.js';
+
+
 import formDataModel from '~s/order.js';
 
-export default @observer class extends React.Component {
+export default class extends React.Component {
     render() {
        
         return (<div>
