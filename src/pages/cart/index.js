@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import AppMinMax from '~c/inputs/minmax';
-import { connect } from 'react-redux';
+
 
 import { Link } from 'react-router-dom';
 import { routesMap } from '~/routes';
 import actions from '~s/actions';
-
+import { connect } from 'react-redux';
 
 
 class Cart extends React.Component {

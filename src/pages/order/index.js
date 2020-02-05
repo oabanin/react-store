@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import actions from '~s/actions';
+import { connect } from 'react-redux';
 
 
 import { Button, Form, Modal } from 'react-bootstrap';
 
-import {Link} from 'react-router-dom';
-import {routesMap} from '~/routes';
+import { Link } from 'react-router-dom';
+import { routesMap } from '~/routes';
 
-export default class extends React.Component {
+class Order extends React.Component {
     /*static propTypes = {
         formData: PropTypes.object.isRequired,
         onChange: PropTypes.func.isRequired,
@@ -35,19 +37,23 @@ export default class extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         let fromFields = [];
+        let everyValid = true;
 
-        for (let name in formDataModel.formData) {
-            let field = formDataModel.formData[name];
+
+        for (let name in this.props.formData) {
+            let field = this.props.formData[name];
             fromFields.push(<Form.Group key={name} controlId={"order-form-" + name}>
                 <Form.Label>{field.label}</Form.Label>
-                <Form.Control type="text" value={field.value} onChange={(e) => formDataModel.changeData(name, e.target.value)}
+                <Form.Control type="text" value={field.value} onChange={(e) => this.props.onChangeRedux(name, e.target.value)}
                 />
                 {field.valid === null || field.valid ? "" :
                     <Form.Text className="text-muted">{field.errorText}</Form.Text>
                 }
-            </Form.Group>)
+            </Form.Group>);
+            if(!field.valid){
+                everyValid = false;
+            }
         }
 
         return (
@@ -60,7 +66,7 @@ export default class extends React.Component {
                 </Form>
 
                 <Link className="btn btn-warning" to={routesMap.home}>Back to cart</Link>
-                <Button variant="primary" onClick={this.show} disabled={!formDataModel.formValid}>Apply order</Button>
+                <Button variant="primary" onClick={this.show} disabled={!everyValid}>Apply order</Button>
 
                 <Modal
                     show={this.state.showModal}
@@ -73,7 +79,7 @@ export default class extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <strong>Total:{cartModel.total}</strong>
+                        <strong>Total:{0}</strong>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="warning" onClick={this.hide} >Back to cart</Button>
@@ -85,3 +91,17 @@ export default class extends React.Component {
     }
 }
 
+let mapStateToProps = (state) => {
+
+    return {
+        formData: state.order.formData
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onChangeRedux: (name, value) => dispatch(actions.order.change(name, value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Order);
